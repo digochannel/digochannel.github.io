@@ -152,6 +152,289 @@
 
   <!-- Conteúdo principal -->
   <main>
+    <section id="digo-widgets-section">
+  <style>
+    #digo-widgets-section {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 2rem;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      padding: 2rem 1rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 32px rgba(60,60,90,0.09);
+      max-width: 900px;
+      margin: 2rem auto;
+      flex-wrap: wrap;
+    }
+
+    #digo-widgets-section .widget {
+      flex: 1 1 260px;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 2px 20px rgba(44,62,80,0.09);
+      padding: 1.5rem 1rem;
+      min-width: 220px;
+      max-width: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: box-shadow 0.2s;
+    }
+
+    #digo-widgets-section .widget:hover {
+      box-shadow: 0 4px 36px rgba(44,62,80,0.14);
+    }
+
+    #digo-widgets-section h3 {
+      margin: 0 0 1rem 0;
+      font-size: 1.15rem;
+      color: #3a4a5a;
+      letter-spacing: 0.02em;
+    }
+
+    .weather-info, #datetime-content, #moon-content {
+      text-align: center;
+      font-size: 1.07rem;
+      color: #222;
+    }
+
+    #weather-temp {
+      font-size: 1.8rem;
+      font-weight: bold;
+      display: block;
+      margin: .3rem 0;
+    }
+
+    #weather-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0.2rem auto;
+    }
+
+    #current-date {
+      font-weight: 500;
+      font-size: 1.1em;
+    }
+    #current-time {
+      font-size: 1.7em;
+      font-weight: bold;
+      letter-spacing: 0.02em;
+    }
+
+    #moon-canvas {
+      display: block;
+      margin: 0.7rem auto 0.2rem auto;
+      background: none;
+    }
+
+    #moon-phase-text {
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    @media (max-width: 900px) {
+      #digo-widgets-section {
+        flex-direction: column;
+        gap: 1.2rem;
+        padding: 1rem 0.2rem;
+      }
+    }
+  </style>
+  <div class="widget" id="weather-widget">
+    <h3>Previsão do Tempo</h3>
+    <div class="weather-info">
+      <span id="weather-location">Carregando...</span>
+      <span id="weather-temp"></span>
+      <span id="weather-desc"></span>
+      <img id="weather-icon" src="" alt="" style="display:none;" />
+    </div>
+  </div>
+  <div class="widget" id="datetime-widget">
+    <h3>Data &amp; Hora</h3>
+    <div id="datetime-content">
+      <span id="current-date"></span><br />
+      <span id="current-time"></span>
+    </div>
+  </div>
+  <div class="widget" id="moon-widget">
+    <h3>Fase da Lua</h3>
+    <div id="moon-content">
+      <span id="moon-phase-text"></span>
+      <canvas id="moon-canvas" width="60" height="60"></canvas>
+    </div>
+  </div>
+  <script>
+    // Weather Widget: Uses Open-Meteo API (no API key needed)
+    async function loadWeather() {
+      const locEl = document.getElementById('weather-location');
+      const tempEl = document.getElementById('weather-temp');
+      const descEl = document.getElementById('weather-desc');
+      const iconEl = document.getElementById('weather-icon');
+      try {
+        // Get user's approximate location (IP-based)
+        let locRes = await fetch('https://ipapi.co/json/');
+        let locData = await locRes.json();
+        let lat = locData.latitude, lon = locData.longitude, city = locData.city;
+
+        locEl.textContent = city || 'Localização';
+
+        // Open-Meteo for current weather
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`;
+        let weatherRes = await fetch(url);
+        let weatherData = await weatherRes.json();
+        let w = weatherData.current_weather;
+        if (w) {
+          tempEl.textContent = `${Math.round(w.temperature)}°C`;
+          descEl.textContent = weatherDesc(w.weathercode);
+          iconEl.src = weatherIconSVG(w.weathercode, w.is_day);
+          iconEl.style.display = '';
+          iconEl.alt = descEl.textContent;
+        } else {
+          tempEl.textContent = '';
+          descEl.textContent = 'Indisponível';
+          iconEl.style.display = 'none';
+        }
+      } catch (e) {
+        locEl.textContent = 'Erro';
+        tempEl.textContent = '';
+        descEl.textContent = 'Falha ao carregar';
+        iconEl.style.display = 'none';
+      }
+    }
+
+    function weatherDesc(code) {
+      const descs = {
+        0: "Céu limpo",
+        1: "Principalmente limpo",
+        2: "Parcialmente nublado",
+        3: "Nublado",
+        45: "Névoa",
+        48: "Névoa congelante",
+        51: "Chuvisco leve",
+        53: "Chuvisco moderado",
+        55: "Chuvisco denso",
+        56: "Chuvisco congelante leve",
+        57: "Chuvisco congelante forte",
+        61: "Chuva leve",
+        63: "Chuva moderada",
+        65: "Chuva forte",
+        66: "Chuva congelante leve",
+        67: "Chuva congelante forte",
+        71: "Neve leve",
+        73: "Neve moderada",
+        75: "Neve forte",
+        77: "Granizo",
+        80: "Aguaceiros leves",
+        81: "Aguaceiros moderados",
+        82: "Aguaceiros violentos",
+        85: "Nevasca leve",
+        86: "Nevasca forte",
+        95: "Tempestade",
+        96: "Tempestade com granizo leve",
+        99: "Tempestade com granizo forte"
+      };
+      return descs[code] || "Tempo desconhecido";
+    }
+    function weatherIconSVG(code, isDay=1) {
+      // Minimal SVG icons (embed as data URI)
+      // For brevity, only a few codes handled
+      if (code === 0) return "https://raw.githubusercontent.com/erikflowers/weather-icons/master/svg/wi-day-sunny.svg";
+      if ([1,2].includes(code)) return "https://raw.githubusercontent.com/erikflowers/weather-icons/master/svg/wi-day-cloudy.svg";
+      if (code === 3) return "https://raw.githubusercontent.com/erikflowers/weather-icons/master/svg/wi-cloudy.svg";
+      if ([45,48].includes(code)) return "https://raw.githubusercontent.com/erikflowers/weather-icons/master/svg/wi-fog.svg";
+      if ([51,53,55,56,57].includes(code)) return "https://raw.githubusercontent.com/erikflowers/weather-icons/master/svg/wi-sprinkle.svg";
+      if ([61,63,65,66,67,80,81,82].includes(code)) return "https://raw.githubusercontent.com/erikflowers/weather-icons/master/svg/wi-rain.svg";
+      if ([71,73,75,77,85,86].includes(code)) return "https://raw.githubusercontent.com/erikflowers/weather-icons/master/svg/wi-snow.svg";
+      if ([95,96,99].includes(code)) return "https://raw.githubusercontent.com/erikflowers/weather-icons/master/svg/wi-thunderstorm.svg";
+      return "https://raw.githubusercontent.com/erikflowers/weather-icons/master/svg/wi-na.svg";
+    }
+
+    // Date & Time Widget
+    function updateDateTime() {
+      const dateEl = document.getElementById('current-date');
+      const timeEl = document.getElementById('current-time');
+      let now = new Date();
+      dateEl.textContent = now.toLocaleDateString('pt-BR', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+      timeEl.textContent = now.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
+    }
+
+    // Moon Phase Widget
+    function drawMoonPhase() {
+      const phaseObj = getMoonPhaseObj(new Date());
+      const canvas = document.getElementById('moon-canvas');
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      // Draw moon base
+      ctx.beginPath();
+      ctx.arc(30,30,26,0,2*Math.PI);
+      ctx.fillStyle = "#f0eada";
+      ctx.fill();
+      // Draw shadow (phase)
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.beginPath();
+      if (phaseObj.illum < 0.5) {
+        // Waxing
+        ctx.ellipse(30,30,26*(1-phaseObj.illum*2),26,0,0,2*Math.PI);
+      } else {
+        // Waning
+        ctx.ellipse(30,30,26*((phaseObj.illum-0.5)*2),26,0,0,2*Math.PI);
+      }
+      ctx.fill();
+      ctx.globalCompositeOperation = "source-over";
+      // Draw border
+      ctx.beginPath();
+      ctx.arc(30,30,26,0,2*Math.PI);
+      ctx.strokeStyle = "#c2bca5";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Set phase text
+      document.getElementById('moon-phase-text').textContent = phaseObj.phasePt;
+    }
+
+    // Moon phase calculation
+    function getMoonPhaseObj(date) {
+      // Simple moon phase algorithm (Meeus/Jenkins)
+      var year = date.getUTCFullYear();
+      var month = date.getUTCMonth() + 1;
+      var day = date.getUTCDate() + date.getUTCHours()/24;
+      if (month < 3) { year--; month += 12; }
+      var K1 = Math.floor(365.25 * (year + 4712));
+      var K2 = Math.floor(30.6 * (month + 1));
+      var K3 = Math.floor(Math.floor((year / 100) + 49) * 0.75) - 38;
+      var JD = K1 + K2 + day + 59; // Julian day
+      if (JD > 2299160) JD -= K3;
+      var IP = (JD - 2451550.1) / 29.530588853;
+      IP = IP - Math.floor(IP);
+      if (IP < 0) IP += 1;
+      var phase = IP;
+      var illum = 0.5 * (1 - Math.cos(2 * Math.PI * phase));
+      var phases = [
+        "Lua Nova", "Crescente", "Quarto Crescente", "Gibosa Crescente",
+        "Lua Cheia", "Gibosa Minguante", "Quarto Minguante", "Minguante"
+      ];
+      var phaseIdx = Math.floor((phase * 8) + 0.5) % 8;
+      return { phase: phase, illum: illum, phasePt: phases[phaseIdx] };
+    }
+
+    // Bootstrap/init
+    function init() {
+      loadWeather();
+      updateDateTime();
+      setInterval(updateDateTime, 1000);
+      drawMoonPhase();
+      setInterval(drawMoonPhase, 60*1000);
+    }
+
+    // Wait DOM for encapsulation
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init);
+    } else {
+      init();
+    }
+  </script>
+</section>
     <section class="videos">
   <style>
     .videos {
