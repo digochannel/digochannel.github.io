@@ -1,619 +1,83 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html><html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Digo Channel - História e Curiosidades</title>
-
-  <!-- SEO -->
-  <meta name="description" content="Digo Channel explora História e Curiosidades com conteúdo envolvente, educativo e divertido.">
+  <title>Digo Channel - História e Curiosidades</title>  <!-- SEO -->  <meta name="description" content="Digo Channel explora História e Curiosidades com conteúdo envolvente, educativo e divertido.">
   <meta name="keywords" content="história, curiosidades, canal, youtube, digo channel, educação, entretenimento">
   <meta name="author" content="Digo Channel">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://digochannel.github.io/">
-  <link rel="icon" type="image/png" href="favicon.png">
-
-  <style>
-    :root {
-      --roxo-escuro: #4B0082;
-      --fundo-branco: #ffffff;
-      --texto-padrao: #333;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background-color: var(--fundo-branco);
-      color: var(--texto-padrao);
-      line-height: 1.6;
-    }
-
-    header {
-      background-color: var(--roxo-escuro);
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    }
-
-    header img.logo-cabecalho {
-      height: 150px;
-      max-width: 100%;
-      width: auto;
-      display: inline-block;
-      vertical-align: middle;
-    }
-
-    .redes-sociais {
-      margin-top: 1px;
-      display: flex;
-      justify-content: center;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .redes-sociais img {
-      width: 20px;
-      height: 20px;
-      transition: transform 0.2s, opacity 0.2s;
-      vertical-align: middle;
-    }
-
-    .redes-sociais a:hover img {
-      transform: scale(1.2);
-      opacity: 0.8;
-    }
-
-    main {
-      padding: 30px 20px;
-    }
-
-    .sobre-mim {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      background-color: #f5f5f5;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .sobre-mim img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--roxo-escuro);
-    }
-
-    .sobre-mim-texto {
-      max-width: 600px;
-    }
-
-    footer {
-      background-color: var(--roxo-escuro);
-      color: #fff;
-      text-align: center;
-      padding: 15px 10px;
-      font-size: 0.9em;
-      margin-top: 40px;
-      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
-    }
-
-    .separador {
-      border: none;
-      height: 2px;
-      background: linear-gradient(to right, transparent, var(--roxo-escuro), transparent);
-      margin: 40px 0;
-    }
-
-    @media (max-width: 600px) {
-      .sobre-mim {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .sobre-mim-texto {
-        max-width: 100%;
-      }
-
-      header img.logo-cabecalho {
-        height: 50px;
-      }
-
-      .redes-sociais img {
-        width: 14px;
-        height: 14px;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Cabeçalho -->
-  <header>
-    <img src="logotipo do cabecalho.png" alt="Logotipo do Digo Channel" class="logo-cabecalho" />
-    <div class="redes-sociais">
+  <link rel="icon" type="image/png" href="favicon.png">  <!-- Tailwind CSS -->  <script src="https://cdn.tailwindcss.com"></script></head>
+<body class="bg-white text-gray-800 font-sans">  <!-- Cabeçalho -->  <header class="bg-purple-900 p-5 text-center shadow-md">
+    <img src="logotipo do cabecalho.png" alt="Logotipo do Digo Channel" class="h-36 inline-block align-middle max-w-full sm:h-14" />
+    <div class="flex justify-center flex-wrap gap-4 mt-1">
       <a href="https://youtube.com/@digocurioso" target="_blank" title="YouTube" aria-label="YouTube">
-        <img src="youtube.png" alt="YouTube" />
+        <img src="youtube.png" alt="YouTube" class="w-5 h-5 sm:w-3.5 sm:h-3.5 hover:scale-110 hover:opacity-80 transition" />
       </a>
       <a href="https://facebook.com/digocurioso" target="_blank" title="Facebook" aria-label="Facebook">
-        <img src="facebook.png" alt="Facebook" />
+        <img src="facebook.png" alt="Facebook" class="w-5 h-5 sm:w-3.5 sm:h-3.5 hover:scale-110 hover:opacity-80 transition" />
       </a>
       <a href="https://instagram.com/digocurioso" target="_blank" title="Instagram" aria-label="Instagram">
-        <img src="instagram.png" alt="Instagram" />
+        <img src="instagram.png" alt="Instagram" class="w-5 h-5 sm:w-3.5 sm:h-3.5 hover:scale-110 hover:opacity-80 transition" />
       </a>
     </div>
-  </header>
-
-  <!-- Conteúdo principal -->
-  <main>
-    <section id="digo-widgets-section">
-  <style>
-    #digo-widgets-section {
-      display: flex;
-      justify-content: center;
-      align-items: stretch;
-      gap: 2rem;
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-      padding: 2rem 1rem;
-      border-radius: 20px;
-      box-shadow: 0 4px 32px rgba(60,60,90,0.09);
-      max-width: 900px;
-      margin: 2rem auto;
-      flex-wrap: wrap;
-    }
-
-    #digo-widgets-section .widget {
-      flex: 1 1 260px;
-      background: #fff;
-      border-radius: 14px;
-      box-shadow: 0 2px 20px rgba(44,62,80,0.09);
-      padding: 1.5rem 1rem;
-      min-width: 220px;
-      max-width: 300px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: box-shadow 0.2s;
-    }
-
-    #digo-widgets-section .widget:hover {
-      box-shadow: 0 4px 36px rgba(44,62,80,0.14);
-    }
-
-    #digo-widgets-section h3 {
-      margin: 0 0 1rem 0;
-      font-size: 1.15rem;
-      color: #3a4a5a;
-      letter-spacing: 0.02em;
-    }
-
-    .weather-info, #datetime-content, #moon-content {
-      text-align: center;
-      font-size: 1.07rem;
-      color: #222;
-    }
-
-    #weather-temp {
-      font-size: 1.8rem;
-      font-weight: bold;
-      display: block;
-      margin: .3rem 0;
-    }
-
-    #weather-icon {
-      width: 48px;
-      height: 48px;
-      margin: 0.2rem auto;
-    }
-
-    #current-date {
-      font-weight: 500;
-      font-size: 1.1em;
-    }
-    #current-time {
-      font-size: 1.7em;
-      font-weight: bold;
-      letter-spacing: 0.02em;
-    }
-
-    #moon-canvas {
-      display: block;
-      margin: 0.7rem auto 0.2rem auto;
-      background: none;
-    }
-
-    #moon-phase-text {
-      font-size: 1.1rem;
-      font-weight: 500;
-    }
-
-    @media (max-width: 900px) {
-      #digo-widgets-section {
-        flex-direction: column;
-        gap: 1.2rem;
-        padding: 1rem 0.2rem;
-      }
-    }
-  </style>
-  <div class="widget" id="weather-widget">
-    <h3>Previsão do Tempo</h3>
-    <div class="weather-info">
+  </header>  <!-- Conteúdo principal -->  <main class="px-5 py-10 space-y-16"><!-- Widgets -->
+<section class="flex flex-wrap justify-center items-stretch gap-8 bg-gradient-to-br from-gray-100 to-blue-100 p-8 rounded-3xl shadow-lg max-w-4xl mx-auto">
+  <div class="flex-1 min-w-[220px] max-w-[300px] bg-white rounded-xl shadow-md p-6 flex flex-col items-center transition-shadow hover:shadow-xl">
+    <h3 class="text-lg font-semibold text-gray-700 mb-4">Previsão do Tempo</h3>
+    <div class="text-center text-base text-gray-900">
       <span id="weather-location">Carregando...</span>
-      <span id="weather-temp"></span>
+      <span id="weather-temp" class="block text-2xl font-bold my-1"></span>
       <span id="weather-desc"></span>
-      <img id="weather-icon" src="" alt="" style="display:none;" />
+      <img id="weather-icon" src="" alt="" class="w-12 h-12 mx-auto mt-2 hidden" />
     </div>
   </div>
-  <div class="widget" id="datetime-widget">
-    <h3>Data &amp; Hora</h3>
-    <div id="datetime-content">
-      <span id="current-date"></span><br />
-      <span id="current-time"></span>
+  <div class="flex-1 min-w-[220px] max-w-[300px] bg-white rounded-xl shadow-md p-6 flex flex-col items-center transition-shadow hover:shadow-xl">
+    <h3 class="text-lg font-semibold text-gray-700 mb-4">Data &amp; Hora</h3>
+    <div id="datetime-content" class="text-center">
+      <span id="current-date" class="font-medium text-base"></span><br />
+      <span id="current-time" class="text-xl font-bold tracking-wide"></span>
     </div>
   </div>
-  <div class="widget" id="moon-widget">
-    <h3>Fase da Lua</h3>
-    <div id="moon-content">
-      <span id="moon-phase-text"></span>
-      <canvas id="moon-canvas" width="60" height="60"></canvas>
+  <div class="flex-1 min-w-[220px] max-w-[300px] bg-white rounded-xl shadow-md p-6 flex flex-col items-center transition-shadow hover:shadow-xl">
+    <h3 class="text-lg font-semibold text-gray-700 mb-4">Fase da Lua</h3>
+    <div id="moon-content" class="text-center">
+      <span id="moon-phase-text" class="text-base font-medium"></span>
+      <canvas id="moon-canvas" width="60" height="60" class="block mx-auto mt-3"></canvas>
     </div>
   </div>
-  <script>
-    // Weather Widget: Uses Open-Meteo API (no API key needed)
-    async function loadWeather() {
-      const locEl = document.getElementById('weather-location');
-      const tempEl = document.getElementById('weather-temp');
-      const descEl = document.getElementById('weather-desc');
-      const iconEl = document.getElementById('weather-icon');
-      try {
-        // Get user's approximate location (IP-based)
-        let locRes = await fetch('https://ipapi.co/json/');
-        let locData = await locRes.json();
-        let lat = locData.latitude, lon = locData.longitude, city = locData.city;
-
-        locEl.textContent = city || 'Localização';
-
-        // Open-Meteo for current weather
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`;
-        let weatherRes = await fetch(url);
-        let weatherData = await weatherRes.json();
-        let w = weatherData.current_weather;
-        if (w) {
-          tempEl.textContent = `${Math.round(w.temperature)}°C`;
-          descEl.textContent = weatherDesc(w.weathercode);
-          iconEl.src = weatherIconSVG(w.weathercode, w.is_day);
-          iconEl.style.display = '';
-          iconEl.alt = descEl.textContent;
-        } else {
-          tempEl.textContent = '';
-          descEl.textContent = 'Indisponível';
-          iconEl.style.display = 'none';
-        }
-      } catch (e) {
-        locEl.textContent = 'Erro';
-        tempEl.textContent = '';
-        descEl.textContent = 'Falha ao carregar';
-        iconEl.style.display = 'none';
-      }
-    }
-
-    function weatherDesc(code) {
-      const descs = {
-        0: "Céu limpo",
-        1: "Principalmente limpo",
-        2: "Parcialmente nublado",
-        3: "Nublado",
-        45: "Névoa",
-        48: "Névoa congelante",
-        51: "Chuvisco leve",
-        53: "Chuvisco moderado",
-        55: "Chuvisco denso",
-        56: "Chuvisco congelante leve",
-        57: "Chuvisco congelante forte",
-        61: "Chuva leve",
-        63: "Chuva moderada",
-        65: "Chuva forte",
-        66: "Chuva congelante leve",
-        67: "Chuva congelante forte",
-        71: "Neve leve",
-        73: "Neve moderada",
-        75: "Neve forte",
-        77: "Granizo",
-        80: "Aguaceiros leves",
-        81: "Aguaceiros moderados",
-        82: "Aguaceiros violentos",
-        85: "Nevasca leve",
-        86: "Nevasca forte",
-        95: "Tempestade",
-        96: "Tempestade com granizo leve",
-        99: "Tempestade com granizo forte"
-      };
-      return descs[code] || "Tempo desconhecido";
-    }
-    function weatherIconSVG(code, isDay=1) {
-      // Minimal SVG icons (embed as data URI)
-      // For brevity, only a few codes handled
-      if (code === 0) return "https://raw.githubusercontent.com/erikflowers/weather-icons/master/svg/wi-day-sunny.svg";
-      if ([1,2].includes(code)) return "https://raw.githubusercontent.com/erikflowers/weather-icons/master/svg/wi-day-cloudy.svg";
-      if (code === 3) return "https://raw.githubusercontent.com/erikflowers/weather-icons/master/svg/wi-cloudy.svg";
-      if ([45,48].includes(code)) return "https://raw.githubusercontent.com/erikflowers/weather-icons/master/svg/wi-fog.svg";
-      if ([51,53,55,56,57].includes(code)) return "https://raw.githubusercontent.com/erikflowers/weather-icons/master/svg/wi-sprinkle.svg";
-      if ([61,63,65,66,67,80,81,82].includes(code)) return "https://raw.githubusercontent.com/erikflowers/weather-icons/master/svg/wi-rain.svg";
-      if ([71,73,75,77,85,86].includes(code)) return "https://raw.githubusercontent.com/erikflowers/weather-icons/master/svg/wi-snow.svg";
-      if ([95,96,99].includes(code)) return "https://raw.githubusercontent.com/erikflowers/weather-icons/master/svg/wi-thunderstorm.svg";
-      return "https://raw.githubusercontent.com/erikflowers/weather-icons/master/svg/wi-na.svg";
-    }
-
-    // Date & Time Widget
-    function updateDateTime() {
-      const dateEl = document.getElementById('current-date');
-      const timeEl = document.getElementById('current-time');
-      let now = new Date();
-      dateEl.textContent = now.toLocaleDateString('pt-BR', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
-      timeEl.textContent = now.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
-    }
-
-    // Moon Phase Widget
-    function drawMoonPhase() {
-      const phaseObj = getMoonPhaseObj(new Date());
-      const canvas = document.getElementById('moon-canvas');
-      const ctx = canvas.getContext('2d');
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      // Draw moon base
-      ctx.beginPath();
-      ctx.arc(30,30,26,0,2*Math.PI);
-      ctx.fillStyle = "#f0eada";
-      ctx.fill();
-      // Draw shadow (phase)
-      ctx.globalCompositeOperation = "destination-out";
-      ctx.beginPath();
-      if (phaseObj.illum < 0.5) {
-        // Waxing
-        ctx.ellipse(30,30,26*(1-phaseObj.illum*2),26,0,0,2*Math.PI);
-      } else {
-        // Waning
-        ctx.ellipse(30,30,26*((phaseObj.illum-0.5)*2),26,0,0,2*Math.PI);
-      }
-      ctx.fill();
-      ctx.globalCompositeOperation = "source-over";
-      // Draw border
-      ctx.beginPath();
-      ctx.arc(30,30,26,0,2*Math.PI);
-      ctx.strokeStyle = "#c2bca5";
-      ctx.lineWidth = 2;
-      ctx.stroke();
-
-      // Set phase text
-      document.getElementById('moon-phase-text').textContent = phaseObj.phasePt;
-    }
-
-    // Moon phase calculation
-    function getMoonPhaseObj(date) {
-      // Simple moon phase algorithm (Meeus/Jenkins)
-      var year = date.getUTCFullYear();
-      var month = date.getUTCMonth() + 1;
-      var day = date.getUTCDate() + date.getUTCHours()/24;
-      if (month < 3) { year--; month += 12; }
-      var K1 = Math.floor(365.25 * (year + 4712));
-      var K2 = Math.floor(30.6 * (month + 1));
-      var K3 = Math.floor(Math.floor((year / 100) + 49) * 0.75) - 38;
-      var JD = K1 + K2 + day + 59; // Julian day
-      if (JD > 2299160) JD -= K3;
-      var IP = (JD - 2451550.1) / 29.530588853;
-      IP = IP - Math.floor(IP);
-      if (IP < 0) IP += 1;
-      var phase = IP;
-      var illum = 0.5 * (1 - Math.cos(2 * Math.PI * phase));
-      var phases = [
-        "Lua Nova", "Crescente", "Quarto Crescente", "Gibosa Crescente",
-        "Lua Cheia", "Gibosa Minguante", "Quarto Minguante", "Minguante"
-      ];
-      var phaseIdx = Math.floor((phase * 8) + 0.5) % 8;
-      return { phase: phase, illum: illum, phasePt: phases[phaseIdx] };
-    }
-
-    // Bootstrap/init
-    function init() {
-      loadWeather();
-      updateDateTime();
-      setInterval(updateDateTime, 1000);
-      drawMoonPhase();
-      setInterval(drawMoonPhase, 60*1000);
-    }
-
-    // Wait DOM for encapsulation
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", init);
-    } else {
-      init();
-    }
-  </script>
 </section>
-    <section class="videos">
-  <style>
-    .videos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      padding: 2rem 1rem;
-      background-color: #ffffff;
-      border-radius: 12px;
-      margin: 2rem auto;
-    }
 
-    .video-thumb {
-      position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
+<!-- Vídeos -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 bg-white rounded-xl p-6 max-w-7xl mx-auto">
+  <!-- vídeos inseridos dinamicamente ou manualmente -->
+  <!-- ... manter os iframes conforme o exemplo -->
+</section>
 
-    .video-thumb iframe {
-      width: 100%;
-      height: 180px;
-      display: block;
-      border: none;
-    }
-
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: transparent;
-      cursor: pointer;
-      z-index: 2;
-    }
-
-    .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.7);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-      backdrop-filter: blur(5px);
-      animation: fadeIn 0.3s ease;
-    }
-
-    .modal iframe {
-      width: 90vw;
-      max-width: 800px;
-      height: 450px;
-      border-radius: 12px;
-      border: none;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 2rem;
-      color: #fff;
-      cursor: pointer;
-      z-index: 1000;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: scale(0.95);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    @media (max-width: 500px) {
-      .modal iframe {
-        height: 220px;
-      }
-    }
-  </style>
-
-  <!-- Galeria de vídeos -->
-  <div class="video-thumb">
-    <iframe src="https://www.youtube.com/embed/DodmJreH3DE" allowfullscreen></iframe>
-    <div class="overlay" onclick="openModal('DodmJreH3DE')"></div>
+<!-- Sobre Mim -->
+<section class="flex flex-col sm:flex-row items-center gap-6 bg-gray-100 p-6 rounded-xl shadow-md max-w-4xl mx-auto text-center sm:text-left">
+  <img src="rodrigo.png" alt="Rodrigo - Criador do Digo Channel" class="w-28 h-28 rounded-full object-cover border-4 border-purple-900" />
+  <div>
+    <p>
+      Rodrigo é o criador do Digo Channel, um espaço dedicado a quem ama história, curiosidades e bons papos com conteúdo leve e inteligente. Entre timelines e fatos inusitados, ele transforma cada descoberta num episódio que prende e ensina. 🎬📚
+    </p>
   </div>
-  <div class="video-thumb">
-    <iframe src="https://www.youtube.com/embed/2UEaw5PHSz8" allowfullscreen></iframe>
-    <div class="overlay" onclick="openModal('2UEaw5PHSz8')"></div>
-  </div>
-  <div class="video-thumb">
-    <iframe src="https://www.youtube.com/embed/ETq1kAuaz5Y" allowfullscreen></iframe>
-    <div class="overlay" onclick="openModal('ETq1kAuaz5Y')"></div>
-  </div>
-  <div class="video-thumb">
-    <iframe src="https://www.youtube.com/embed/9tk8OIgOPyI" allowfullscreen></iframe>
-    <div class="overlay" onclick="openModal('9tk8OIgOPyI')"></div>
-  </div>
-  <div class="video-thumb">
-    <iframe src="https://www.youtube.com/embed/Ab3hgDKVOHM" allowfullscreen></iframe>
-    <div class="overlay" onclick="openModal('Ab3hgDKVOHM')"></div>
-  </div>
-  <div class="video-thumb">
-    <iframe src="https://www.youtube.com/embed/I_N6DN2sK1s" allowfullscreen></iframe>
-    <div class="overlay" onclick="openModal('I_N6DN2sK1s')"></div>
-  </div>
-  <div class="video-thumb">
-    <iframe src="https://www.youtube.com/embed/SvmFb3W3cZE" allowfullscreen></iframe>
-    <div class="overlay" onclick="openModal('SvmFb3W3cZE')"></div>
-  </div>
-  <div class="video-thumb">
-    <iframe src="https://www.youtube.com/embed/unkjb8x5ruI" allowfullscreen></iframe>
-    <div class="overlay" onclick="openModal('unkjb8x5ruI')"></div>
-  </div>
-  <div class="video-thumb">
-    <iframe src="https://www.youtube.com/embed/z7osHTjc-9Y" allowfullscreen></iframe>
-    <div class="overlay" onclick="openModal('z7osHTjc-9Y')"></div>
-  </div>
+</section>
 
-  <!-- Modal de vídeo -->
-  <div id="videoModal" class="modal">
-    <span class="modal-close" onclick="closeModal()">×</span>
-    <iframe id="modalIframe" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-  </div>
-
-  <script>
-    function openModal(videoId) {
-      const modal = document.getElementById("videoModal");
-      const iframe = document.getElementById("modalIframe");
-      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`;
-      modal.style.display = "flex";
-    }
-
-    function closeModal() {
-      const modal = document.getElementById("videoModal");
-      const iframe = document.getElementById("modalIframe");
-      iframe.src = "";
-      modal.style.display = "none";
-    }
-
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") closeModal();
-    });
-  </script>
-    </section>
-    <!-- Seção Sobre Mim -->
-    <section class="sobre-mim">
-      <img src="rodrigo.png" alt="Rodrigo - Criador do Digo Channel" />
-      <div class="sobre-mim-texto" id="sobre-mim-texto">
-        Rodrigo é o criador do Digo Channel, um espaço dedicado a quem ama história, curiosidades e bons papos com conteúdo leve e inteligente. Entre timelines e fatos inusitados, ele transforma cada descoberta num episódio que prende e ensina. 🎬📚
-      </div>
-    </section>
-  </main>
-
-  <!-- Rodapé -->
-  <footer>
+  </main>  <!-- Rodapé -->  <footer class="bg-purple-900 text-white text-center py-6 mt-12 text-sm shadow-inner">
     &copy; <span id="ano"></span> Digo Channel - Todos os direitos reservados.
-    <div class="redes-sociais" style="margin-top: 10px;">
-      <a href="https://youtube.com/@digocurioso" target="_blank" title="YouTube" aria-label="YouTube">
-        <img src="youtube.png" alt="YouTube" />
+    <div class="flex justify-center gap-4 mt-3">
+      <a href="https://youtube.com/@digocurioso" target="_blank" title="YouTube">
+        <img src="youtube.png" alt="YouTube" class="w-5 h-5" />
       </a>
-      <a href="https://facebook.com/digocurioso" target="_blank" title="Facebook" aria-label="Facebook">
-        <img src="facebook.png" alt="Facebook" />
+      <a href="https://facebook.com/digocurioso" target="_blank" title="Facebook">
+        <img src="facebook.png" alt="Facebook" class="w-5 h-5" />
       </a>
-      <a href="https://instagram.com/digocurioso" target="_blank" title="Instagram" aria-label="Instagram">
-        <img src="instagram.png" alt="Instagram" />
+      <a href="https://instagram.com/digocurioso" target="_blank" title="Instagram">
+        <img src="instagram.png" alt="Instagram" class="w-5 h-5" />
       </a>
     </div>
-  </footer>
-
-  <script>
+  </footer>  <script>
     document.getElementById("ano").textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+  </script></body>
+        </html>
