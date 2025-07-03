@@ -22,31 +22,149 @@
       </a>
     </div>
   </header>  <!-- Conteúdo principal -->  <main class="px-5 py-10 space-y-16"><!-- Widgets -->
-<section class="flex flex-wrap justify-center items-stretch gap-8 bg-gradient-to-br from-gray-100 to-blue-100 p-8 rounded-3xl shadow-lg max-w-4xl mx-auto">
-  <div class="flex-1 min-w-[220px] max-w-[300px] bg-white rounded-xl shadow-md p-6 flex flex-col items-center transition-shadow hover:shadow-xl">
-    <h3 class="text-lg font-semibold text-gray-700 mb-4">Previsão do Tempo</h3>
-    <div class="text-center text-base text-gray-900">
-      <span id="weather-location">Carregando...</span>
-      <span id="weather-temp" class="block text-2xl font-bold my-1"></span>
-      <span id="weather-desc"></span>
-      <img id="weather-icon" src="" alt="" class="w-12 h-12 mx-auto mt-2 hidden" />
+<section class="relative">
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Conteúdo da seção com os 3 widgets -->
+  <div class="flex flex-wrap justify-center items-stretch gap-8 bg-gradient-to-br from-gray-100 to-blue-100 p-8 rounded-3xl shadow-lg max-w-4xl mx-auto">
+    <!-- Widget Clima -->
+    <div class="flex-1 min-w-[220px] max-w-[300px] bg-white rounded-xl shadow-md p-6 flex flex-col items-center transition-shadow hover:shadow-xl">
+      <h3 class="text-lg font-semibold text-gray-700 mb-4">Previsão do Tempo</h3>
+      <div class="text-center text-base text-gray-900">
+        <span id="weather-location">Carregando...</span>
+        <span id="weather-temp" class="block text-2xl font-bold my-1"></span>
+        <span id="weather-desc"></span>
+        <img id="weather-icon" src="" alt="" class="w-12 h-12 mx-auto mt-2 hidden" />
+      </div>
+    </div>
+
+    <!-- Widget Data & Hora -->
+    <div class="flex-1 min-w-[220px] max-w-[300px] bg-white rounded-xl shadow-md p-6 flex flex-col items-center transition-shadow hover:shadow-xl">
+      <h3 class="text-lg font-semibold text-gray-700 mb-4">Data &amp; Hora</h3>
+      <div id="datetime-content" class="text-center">
+        <span id="current-date" class="font-medium text-base"></span><br />
+        <span id="current-time" class="text-xl font-bold tracking-wide"></span>
+      </div>
+    </div>
+
+    <!-- Widget Lua -->
+    <div class="flex-1 min-w-[220px] max-w-[300px] bg-white rounded-xl shadow-md p-6 flex flex-col items-center transition-shadow hover:shadow-xl">
+      <h3 class="text-lg font-semibold text-gray-700 mb-4">Fase da Lua</h3>
+      <div id="moon-content" class="text-center">
+        <span id="moon-phase-text" class="text-base font-medium"></span>
+        <canvas id="moon-canvas" width="60" height="60" class="block mx-auto mt-3"></canvas>
+      </div>
     </div>
   </div>
-  <div class="flex-1 min-w-[220px] max-w-[300px] bg-white rounded-xl shadow-md p-6 flex flex-col items-center transition-shadow hover:shadow-xl">
-    <h3 class="text-lg font-semibold text-gray-700 mb-4">Data &amp; Hora</h3>
-    <div id="datetime-content" class="text-center">
-      <span id="current-date" class="font-medium text-base"></span><br />
-      <span id="current-time" class="text-xl font-bold tracking-wide"></span>
-    </div>
-  </div>
-  <div class="flex-1 min-w-[220px] max-w-[300px] bg-white rounded-xl shadow-md p-6 flex flex-col items-center transition-shadow hover:shadow-xl">
-    <h3 class="text-lg font-semibold text-gray-700 mb-4">Fase da Lua</h3>
-    <div id="moon-content" class="text-center">
-      <span id="moon-phase-text" class="text-base font-medium"></span>
-      <canvas id="moon-canvas" width="60" height="60" class="block mx-auto mt-3"></canvas>
-    </div>
-  </div>
-</section>
+
+  <!-- JavaScript -->
+  <script>
+    // --- Previsão do Tempo ---
+    async function carregarClima() {
+      try {
+        const loc = await fetch('https://ipapi.co/json/').then(res => res.json());
+        const latitude = loc.latitude;
+        const longitude = loc.longitude;
+        const cidade = loc.city;
+
+        const weather = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weathercode&timezone=auto`)
+          .then(res => res.json());
+
+        const temperatura = weather.current.temperature_2m;
+        const codigo = weather.current.weathercode;
+
+        const icones = {
+          0: '☀️',
+          1: '🌤️',
+          2: '⛅',
+          3: '☁️',
+          45: '🌫️',
+          61: '🌧️',
+          63: '🌦️',
+          80: '⛈️'
+        };
+
+        document.getElementById('weather-location').textContent = cidade;
+        document.getElementById('weather-temp').textContent = `${temperatura}°C`;
+        document.getElementById('weather-desc').textContent = descricaoClima(codigo);
+        document.getElementById('weather-icon').alt = icones[codigo] || '';
+        document.getElementById('weather-icon').classList.remove('hidden');
+      } catch (e) {
+        console.error("Erro ao carregar clima:", e);
+        document.getElementById('weather-location').textContent = "Erro ao localizar";
+      }
+    }
+
+    function descricaoClima(codigo) {
+      const map = {
+        0: "Céu limpo",
+        1: "Poucas nuvens",
+        2: "Nublado",
+        3: "Encoberto",
+        45: "Neblina",
+        61: "Chuva fraca",
+        63: "Chuva moderada",
+        80: "Tempestade"
+      };
+      return map[codigo] || "Tempo desconhecido";
+    }
+
+    // --- Relógio ---
+    function atualizarRelogio() {
+      const agora = new Date();
+      const data = agora.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+      const hora = agora.toLocaleTimeString('pt-BR');
+      document.getElementById('current-date').textContent = data;
+      document.getElementById('current-time').textContent = hora;
+    }
+
+    // --- Fase da Lua ---
+    function carregarFaseLua() {
+      const canvas = document.getElementById('moon-canvas');
+      const ctx = canvas.getContext('2d');
+      const hoje = new Date();
+      const ciclo = 29.53058867;
+      const inicio = new Date('2001-01-01T00:00:00Z');
+      const diff = hoje.getTime() - inicio.getTime();
+      const dias = diff / (1000 * 60 * 60 * 24);
+      const fase = (dias % ciclo) / ciclo;
+
+      let nomeFase = '';
+      if (fase < 0.03 || fase > 0.97) nomeFase = 'Lua Nova';
+      else if (fase < 0.22) nomeFase = 'Crescente';
+      else if (fase < 0.28) nomeFase = 'Quarto Crescente';
+      else if (fase < 0.47) nomeFase = 'Gibosa Crescente';
+      else if (fase < 0.53) nomeFase = 'Lua Cheia';
+      else if (fase < 0.72) nomeFase = 'Gibosa Minguante';
+      else if (fase < 0.78) nomeFase = 'Quarto Minguante';
+      else nomeFase = 'Minguante';
+
+      document.getElementById('moon-phase-text').textContent = nomeFase;
+
+      // Desenha lua
+      ctx.clearRect(0, 0, 60, 60);
+      ctx.fillStyle = '#f4f4f4';
+      ctx.beginPath();
+      ctx.arc(30, 30, 25, 0, 2 * Math.PI);
+      ctx.fill();
+
+      ctx.fillStyle = '#000';
+      const sombra = fase < 0.5 ? fase * 2 : (1 - fase) * 2;
+      ctx.beginPath();
+      ctx.arc(30, 30, 25, 0, 2 * Math.PI);
+      ctx.globalAlpha = sombra;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+
+    // --- Início ---
+    carregarClima();
+    carregarFaseLua();
+    atualizarRelogio();
+    setInterval(atualizarRelogio, 1000);
+  </script>
+  </section>
 
 <!-- Vídeos -->
 <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 bg-white rounded-xl p-6 max-w-7xl mx-auto">
