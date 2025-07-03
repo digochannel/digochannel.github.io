@@ -50,8 +50,33 @@
 
 <!-- Vídeos -->
 <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 bg-white rounded-xl p-6 max-w-7xl mx-auto">
-  <!-- vídeos inseridos dinamicamente ou manualmente -->
-  <!-- ... manter os iframes conforme o exemplo -->
+  <div class="relative rounded-xl overflow-hidden shadow-lg">
+    <iframe class="w-full h-48" src="https://www.youtube.com/embed/DodmJreH3DE" allowfullscreen></iframe>
+  </div>
+  <div class="relative rounded-xl overflow-hidden shadow-lg">
+    <iframe class="w-full h-48" src="https://www.youtube.com/embed/2UEaw5PHSz8" allowfullscreen></iframe>
+  </div>
+  <div class="relative rounded-xl overflow-hidden shadow-lg">
+    <iframe class="w-full h-48" src="https://www.youtube.com/embed/ETq1kAuaz5Y" allowfullscreen></iframe>
+  </div>
+  <div class="relative rounded-xl overflow-hidden shadow-lg">
+    <iframe class="w-full h-48" src="https://www.youtube.com/embed/9tk8OIgOPyI" allowfullscreen></iframe>
+  </div>
+  <div class="relative rounded-xl overflow-hidden shadow-lg">
+    <iframe class="w-full h-48" src="https://www.youtube.com/embed/Ab3hgDKVOHM" allowfullscreen></iframe>
+  </div>
+  <div class="relative rounded-xl overflow-hidden shadow-lg">
+    <iframe class="w-full h-48" src="https://www.youtube.com/embed/I_N6DN2sK1s" allowfullscreen></iframe>
+  </div>
+  <div class="relative rounded-xl overflow-hidden shadow-lg">
+    <iframe class="w-full h-48" src="https://www.youtube.com/embed/SvmFb3W3cZE" allowfullscreen></iframe>
+  </div>
+  <div class="relative rounded-xl overflow-hidden shadow-lg">
+    <iframe class="w-full h-48" src="https://www.youtube.com/embed/unkjb8x5ruI" allowfullscreen></iframe>
+  </div>
+  <div class="relative rounded-xl overflow-hidden shadow-lg">
+    <iframe class="w-full h-48" src="https://www.youtube.com/embed/z7osHTjc-9Y" allowfullscreen></iframe>
+  </div>
 </section>
 
 <!-- Sobre Mim -->
@@ -78,6 +103,18 @@
       </a>
     </div>
   </footer>  <script>
+    // Atualiza o ano no rodapé
     document.getElementById("ano").textContent = new Date().getFullYear();
+
+    // Data e hora
+    function updateDateTime() {
+      const dateEl = document.getElementById('current-date');
+      const timeEl = document.getElementById('current-time');
+      let now = new Date();
+      dateEl.textContent = now.toLocaleDateString('pt-BR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+      timeEl.textContent = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    }
+    setInterval(updateDateTime, 1000);
+    updateDateTime();
   </script></body>
         </html>
