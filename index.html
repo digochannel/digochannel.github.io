@@ -1,238 +1,245 @@
-<!DOCTYPE html><html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Digo Channel - História e Curiosidades</title>  <!-- SEO -->  <meta name="description" content="Digo Channel explora História e Curiosidades com conteúdo envolvente, educativo e divertido.">
-  <meta name="keywords" content="história, curiosidades, canal, youtube, digo channel, educação, entretenimento">
-  <meta name="author" content="Digo Channel">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://digochannel.github.io/">
-  <link rel="icon" type="image/png" href="favicon.png">  <!-- Tailwind CSS -->  <script src="https://cdn.tailwindcss.com"></script></head>
-<body class="bg-white text-gray-800 font-sans">  <!-- Cabeçalho -->  <header class="bg-purple-900 p-5 text-center shadow-md">
-    <img src="logotipo do cabecalho.png" alt="Logotipo do Digo Channel" class="h-36 inline-block align-middle max-w-full sm:h-14" />
-    <div class="flex justify-center flex-wrap gap-4 mt-1">
-      <a href="https://youtube.com/@digocurioso" target="_blank" title="YouTube" aria-label="YouTube">
-        <img src="youtube.png" alt="YouTube" class="w-5 h-5 sm:w-3.5 sm:h-3.5 hover:scale-110 hover:opacity-80 transition" />
-      </a>
-      <a href="https://facebook.com/digocurioso" target="_blank" title="Facebook" aria-label="Facebook">
-        <img src="facebook.png" alt="Facebook" class="w-5 h-5 sm:w-3.5 sm:h-3.5 hover:scale-110 hover:opacity-80 transition" />
-      </a>
-      <a href="https://instagram.com/digocurioso" target="_blank" title="Instagram" aria-label="Instagram">
-        <img src="instagram.png" alt="Instagram" class="w-5 h-5 sm:w-3.5 sm:h-3.5 hover:scale-110 hover:opacity-80 transition" />
-      </a>
-    </div>
-  </header>  <!-- Conteúdo principal -->  <main class="px-5 py-10 space-y-16"><!-- Widgets -->
-<section class="relative">
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digo Channel - História e Curiosidades</title>
 
-  <!-- Conteúdo da seção com os 3 widgets -->
-  <div class="flex flex-wrap justify-center items-stretch gap-8 bg-gradient-to-br from-gray-100 to-blue-100 p-8 rounded-3xl shadow-lg max-w-4xl mx-auto">
-    <!-- Widget Clima -->
-    <div class="flex-1 min-w-[220px] max-w-[300px] bg-white rounded-xl shadow-md p-6 flex flex-col items-center transition-shadow hover:shadow-xl">
-      <h3 class="text-lg font-semibold text-gray-700 mb-4">Previsão do Tempo</h3>
-      <div class="text-center text-base text-gray-900">
-        <span id="weather-location">Carregando...</span>
-        <span id="weather-temp" class="block text-2xl font-bold my-1"></span>
-        <span id="weather-desc"></span>
-        <img id="weather-icon" src="" alt="" class="w-12 h-12 mx-auto mt-2 hidden" />
-      </div>
-    </div>
+    <!-- Meta Tags -->
+    <meta name="description" content="Digo Channel - História e Curiosidades: conteúdos educativos e interessantes sobre História.">
+    <meta name="author" content="Rodrigo Pontes">
+    <meta name="keywords" content="História, Curiosidades, Educação, Digo Channel">
 
-    <!-- Widget Data & Hora -->
-    <div class="flex-1 min-w-[220px] max-w-[300px] bg-white rounded-xl shadow-md p-6 flex flex-col items-center transition-shadow hover:shadow-xl">
-      <h3 class="text-lg font-semibold text-gray-700 mb-4">Data &amp; Hora</h3>
-      <div id="datetime-content" class="text-center">
-        <span id="current-date" class="font-medium text-base"></span><br />
-        <span id="current-time" class="text-xl font-bold tracking-wide"></span>
-      </div>
-    </div>
+    <!-- Open Graph -->
+    <meta property="og:title" content="Digo Channel - História e Curiosidades">
+    <meta property="og:description" content="Conteúdos educativos e curiosidades históricas para todos.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://digochannel.github.io/">
+    <meta property="og:image" content="LOGO_DO_SITE_AQUI">
 
-    <!-- Widget Lua -->
-    <div class="flex-1 min-w-[220px] max-w-[300px] bg-white rounded-xl shadow-md p-6 flex flex-col items-center transition-shadow hover:shadow-xl">
-      <h3 class="text-lg font-semibold text-gray-700 mb-4">Fase da Lua</h3>
-      <div id="moon-content" class="text-center">
-        <span id="moon-phase-text" class="text-base font-medium"></span>
-        <canvas id="moon-canvas" width="60" height="60" class="block mx-auto mt-3"></canvas>
-      </div>
-    </div>
-  </div>
-
-  <!-- JavaScript -->
-  <script>
-    // --- Previsão do Tempo ---
-    async function carregarClima() {
-      try {
-        const loc = await fetch('https://ipapi.co/json/').then(res => res.json());
-        const latitude = loc.latitude;
-        const longitude = loc.longitude;
-        const cidade = loc.city;
-
-        const weather = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weathercode&timezone=auto`)
-          .then(res => res.json());
-
-        const temperatura = weather.current.temperature_2m;
-        const codigo = weather.current.weathercode;
-
-        const icones = {
-          0: '☀️',
-          1: '🌤️',
-          2: '⛅',
-          3: '☁️',
-          45: '🌫️',
-          61: '🌧️',
-          63: '🌦️',
-          80: '⛈️'
-        };
-
-        document.getElementById('weather-location').textContent = cidade;
-        document.getElementById('weather-temp').textContent = `${temperatura}°C`;
-        document.getElementById('weather-desc').textContent = descricaoClima(codigo);
-        document.getElementById('weather-icon').alt = icones[codigo] || '';
-        document.getElementById('weather-icon').classList.remove('hidden');
-      } catch (e) {
-        console.error("Erro ao carregar clima:", e);
-        document.getElementById('weather-location').textContent = "Erro ao localizar";
-      }
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Digo Channel - História e Curiosidades",
+        "url": "https://digochannel.github.io/"
     }
+    </script>
 
-    function descricaoClima(codigo) {
-      const map = {
-        0: "Céu limpo",
-        1: "Poucas nuvens",
-        2: "Nublado",
-        3: "Encoberto",
-        45: "Neblina",
-        61: "Chuva fraca",
-        63: "Chuva moderada",
-        80: "Tempestade"
-      };
-      return map[codigo] || "Tempo desconhecido";
-    }
+    <!-- Canonical -->
+    <link rel="canonical" href="https://digochannel.github.io/">
 
-    // --- Relógio ---
-    function atualizarRelogio() {
-      const agora = new Date();
-      const data = agora.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-      const hora = agora.toLocaleTimeString('pt-BR');
-      document.getElementById('current-date').textContent = data;
-      document.getElementById('current-time').textContent = hora;
-    }
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-    // --- Fase da Lua ---
-    function carregarFaseLua() {
-      const canvas = document.getElementById('moon-canvas');
-      const ctx = canvas.getContext('2d');
-      const hoje = new Date();
-      const ciclo = 29.53058867;
-      const inicio = new Date('2001-01-01T00:00:00Z');
-      const diff = hoje.getTime() - inicio.getTime();
-      const dias = diff / (1000 * 60 * 60 * 24);
-      const fase = (dias % ciclo) / ciclo;
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-      let nomeFase = '';
-      if (fase < 0.03 || fase > 0.97) nomeFase = 'Lua Nova';
-      else if (fase < 0.22) nomeFase = 'Crescente';
-      else if (fase < 0.28) nomeFase = 'Quarto Crescente';
-      else if (fase < 0.47) nomeFase = 'Gibosa Crescente';
-      else if (fase < 0.53) nomeFase = 'Lua Cheia';
-      else if (fase < 0.72) nomeFase = 'Gibosa Minguante';
-      else if (fase < 0.78) nomeFase = 'Quarto Minguante';
-      else nomeFase = 'Minguante';
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
-      document.getElementById('moon-phase-text').textContent = nomeFase;
+    <!-- Style.css (último na ordem conforme instrução) -->
+    <link rel="stylesheet" href="style.css">
 
-      // Desenha lua
-      ctx.clearRect(0, 0, 60, 60);
-      ctx.fillStyle = '#f4f4f4';
-      ctx.beginPath();
-      ctx.arc(30, 30, 25, 0, 2 * Math.PI);
-      ctx.fill();
+    <!-- CSS Embutido -->
+    <style>
+        /* ===================== CABEÇALHO ===================== */
+        header {
+            background-color: #001f3f; /* azul marinho escuro */
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            position: relative;
+            z-index: 10;
+        }
 
-      ctx.fillStyle = '#000';
-      const sombra = fase < 0.5 ? fase * 2 : (1 - fase) * 2;
-      ctx.beginPath();
-      ctx.arc(30, 30, 25, 0, 2 * Math.PI);
-      ctx.globalAlpha = sombra;
-      ctx.fill();
-      ctx.globalAlpha = 1;
-    }
+        header .logo {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
 
-    // --- Início ---
-    carregarClima();
-    carregarFaseLua();
-    atualizarRelogio();
-    setInterval(atualizarRelogio, 1000);
-  </script>
-  </section>
+        nav {
+            display: flex;
+            gap: 1.5rem;
+        }
 
-<!-- Vídeos -->
-<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 bg-white rounded-xl p-6 max-w-7xl mx-auto">
-  <div class="relative rounded-xl overflow-hidden shadow-lg">
-    <iframe class="w-full h-48" src="https://www.youtube.com/embed/DodmJreH3DE" allowfullscreen></iframe>
-  </div>
-  <div class="relative rounded-xl overflow-hidden shadow-lg">
-    <iframe class="w-full h-48" src="https://www.youtube.com/embed/2UEaw5PHSz8" allowfullscreen></iframe>
-  </div>
-  <div class="relative rounded-xl overflow-hidden shadow-lg">
-    <iframe class="w-full h-48" src="https://www.youtube.com/embed/ETq1kAuaz5Y" allowfullscreen></iframe>
-  </div>
-  <div class="relative rounded-xl overflow-hidden shadow-lg">
-    <iframe class="w-full h-48" src="https://www.youtube.com/embed/9tk8OIgOPyI" allowfullscreen></iframe>
-  </div>
-  <div class="relative rounded-xl overflow-hidden shadow-lg">
-    <iframe class="w-full h-48" src="https://www.youtube.com/embed/Ab3hgDKVOHM" allowfullscreen></iframe>
-  </div>
-  <div class="relative rounded-xl overflow-hidden shadow-lg">
-    <iframe class="w-full h-48" src="https://www.youtube.com/embed/I_N6DN2sK1s" allowfullscreen></iframe>
-  </div>
-  <div class="relative rounded-xl overflow-hidden shadow-lg">
-    <iframe class="w-full h-48" src="https://www.youtube.com/embed/SvmFb3W3cZE" allowfullscreen></iframe>
-  </div>
-  <div class="relative rounded-xl overflow-hidden shadow-lg">
-    <iframe class="w-full h-48" src="https://www.youtube.com/embed/unkjb8x5ruI" allowfullscreen></iframe>
-  </div>
-  <div class="relative rounded-xl overflow-hidden shadow-lg">
-    <iframe class="w-full h-48" src="https://www.youtube.com/embed/z7osHTjc-9Y" allowfullscreen></iframe>
-  </div>
+        nav a {
+            color: #FFA500; /* laranja vivo */
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* ===================== MENU MOBILE ===================== */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            height: 3px;
+            width: 25px;
+            background-color: #FFA500;
+            margin: 4px 0;
+            transition: 0.4s;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #001f3f;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+        }
+
+        /* ===================== HERO ===================== */
+        .hero {
+            background-color: #FFA500; /* laranja vivo */
+            color: #001f3f;
+            text-align: center;
+            padding: 5rem 2rem;
+            font-weight: bold;
+        }
+
+        .hero img {
+            max-width: 150px; /* logo editável */
+            margin-bottom: 1rem;
+        }
+
+        /* ===================== RODAPÉ ===================== */
+        footer {
+            background-color: #333333; /* cinza escuro */
+            color: #FFA500;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer nav {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        footer nav a {
+            color: #FFA500;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer .social-icons a {
+            margin: 0 0.5rem;
+            color: #FFA500;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- ===================== CABEÇALHO ===================== -->
+    <header>
+        <div class="logo">Digo Channel</div>
+        <div class="menu-toggle" id="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="nav-menu">
+            <a href="#">Home</a>
+            <a href="#">Sobre</a>
+            <a href="#">Contato</a>
+        </nav>
+    </header>
+
+    <!-- ===================== HERO ===================== -->
+<section class="hero">
+    <!-- LOGO EDITÁVEL -->
+    <img src="logo.png" alt="Logotipo do Digo Channel">
+    <h1>Digo Channel - História e Curiosidades</h1>
 </section>
 
-<!-- Sobre Mim -->
-<section class="flex flex-col sm:flex-row items-center gap-6 bg-gray-100 p-6 rounded-xl shadow-md max-w-4xl mx-auto text-center sm:text-left">
-  <img src="rodrigo.png" alt="Rodrigo - Criador do Digo Channel" class="w-28 h-28 rounded-full object-cover border-4 border-purple-900" />
-  <div>
-    <p>
-      Rodrigo é o criador do Digo Channel, um espaço dedicado a quem ama história, curiosidades e bons papos com conteúdo leve e inteligente. Entre timelines e fatos inusitados, ele transforma cada descoberta num episódio que prende e ensina. 🎬📚
-    </p>
-  </div>
-</section>
+<style>
+.hero {
+    background-color: #FFA500; /* laranja vivo */
+    color: #001f3f;
+    text-align: center;
+    padding: 5rem 2rem;
+    font-weight: bold;
+}
 
-  </main>  <!-- Rodapé -->  <footer class="bg-purple-900 text-white text-center py-6 mt-12 text-sm shadow-inner">
-    &copy; <span id="ano"></span> Digo Channel - Todos os direitos reservados.
-    <div class="flex justify-center gap-4 mt-3">
-      <a href="https://youtube.com/@digocurioso" target="_blank" title="YouTube">
-        <img src="youtube.png" alt="YouTube" class="w-5 h-5" />
-      </a>
-      <a href="https://facebook.com/digocurioso" target="_blank" title="Facebook">
-        <img src="facebook.png" alt="Facebook" class="w-5 h-5" />
-      </a>
-      <a href="https://instagram.com/digocurioso" target="_blank" title="Instagram">
-        <img src="instagram.png" alt="Instagram" class="w-5 h-5" />
-      </a>
-    </div>
-  </footer>  <script>
-    // Atualiza o ano no rodapé
-    document.getElementById("ano").textContent = new Date().getFullYear();
+.hero img {
+    max-width: 150px; /* logo editável */
+    margin-bottom: 1rem;
+}
 
-    // Data e hora
-    function updateDateTime() {
-      const dateEl = document.getElementById('current-date');
-      const timeEl = document.getElementById('current-time');
-      let now = new Date();
-      dateEl.textContent = now.toLocaleDateString('pt-BR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-      timeEl.textContent = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+/* ===================== TITULO HERO RESPONSIVO ===================== */
+.hero h1 {
+    font-size: 2.5rem; /* tamanho padrão */
+    line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+    .hero h1 {
+        font-size: 3.5rem; /* tablets e desktops */
     }
-    setInterval(updateDateTime, 1000);
-    updateDateTime();
-  </script></body>
-        </html>
+}
+
+@media (min-width: 1200px) {
+    .hero h1 {
+        font-size: 4.5rem; /* telas grandes */
+    }
+}
+</style>
+
+    <!-- ===================== MAIN ===================== -->
+    <main class="flex-grow">
+        <!-- CONTEÚDO EDITÁVEL -->
+        <!-- Adicione aqui o conteúdo principal usando Tailwind CSS -->
+    </main>
+
+    <!-- ===================== RODAPÉ ===================== -->
+    <footer>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Sobre</a>
+            <a href="#">Contato</a>
+            <a href="#">Política de Privacidade</a>
+        </nav>
+        <div class="social-icons">
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-youtube"></i></a>
+        </div>
+        <p>&copy; <span id="current-year"></span> Digo Channel - História e Curiosidades. Tema por Rodrigo Pontes.</p>
+    </footer>
+
+    <!-- ===================== JS MENU MOBILE ===================== -->
+    <script>
+        const toggle = document.getElementById('menu-toggle');
+        const nav = document.getElementById('nav-menu');
+
+        toggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+
+        // Atualiza o ano atual automaticamente
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+  </html>
