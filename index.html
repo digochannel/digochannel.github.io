@@ -122,36 +122,56 @@
         }
 
         /* ===================== RODAPÉ ===================== */
-        footer {
-            background-color: #333333; /* cinza escuro */
-            color: #FFA500;
-            text-align: center;
-            padding: 2rem;
-        }
+footer {
+    background-color: #333333; /* cinza escuro */
+    color: #FFA500;
+    text-align: center;
+    padding: 2rem;
+}
 
-        footer nav {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 1rem;
-        }
+/* Menu do footer sempre igual ao desktop */
+footer nav {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap; /* permite quebra de linha se necessário em telas pequenas */
+    margin-bottom: 1rem;
+}
 
-        footer nav a {
-            color: #FFA500;
-            text-decoration: none;
-            font-weight: bold;
-        }
+footer nav a {
+    color: #FFA500;
+    text-decoration: none;
+    font-weight: bold;
+}
 
-        footer .social-icons a {
-            margin: 0 0.5rem;
-            color: #FFA500;
-            font-size: 1.5rem;
-        }
-    </style>
-</head>
-<body class="flex flex-col min-h-screen">
+/* Ícones sociais do footer */
+footer .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
 
+footer .social-icons a {
+    color: #FFA500;
+    font-size: 1.5rem;
+}
+
+/* ===================== RESPONSIVO ===================== */
+/* Ajustes mínimos em telas pequenas, sem cortar nada */
+@media (max-width: 768px) {
+    footer {
+        padding: 2rem 1rem;
+    }
+
+    footer nav {
+        gap: 1rem;
+    }
+
+    footer .social-icons a {
+        font-size: 1.3rem;
+    }
+    }
     <!-- ===================== CABEÇALHO ===================== -->
     <header>
         <div class="logo">Digo Channel</div>
@@ -243,4 +263,5 @@
     </script>
 </body>
   </html>
+
 
