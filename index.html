@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -108,36 +109,21 @@
         }
 
         /* ===================== HERO ===================== */
-        .hero {
-            background-color: #FFA500; /* laranja vivo */
-            color: #001f3f;
-            text-align: center;
-            padding: 5rem 2rem;
-            font-weight: bold;
-        }
+.hero {
+    background-color: #FFA500; /* laranja vivo */
+    color: #001f3f;
+    text-align: center;
+    padding: 3rem 2rem; /* altura reduzida */
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        .hero img {
-            max-width: 150px; /* logo editável */
-            margin-bottom: 1rem;
-        }
-
-        /* Título Hero Responsivo */
-        .hero h1 {
-            font-size: 2.5rem; /* padrão mobile */
-            line-height: 1.2;
-        }
-
-        @media (min-width: 768px) {
-            .hero h1 {
-                font-size: 3.5rem; /* tablets e desktops */
-            }
-        }
-
-        @media (min-width: 1200px) {
-            .hero h1 {
-                font-size: 4.5rem; /* telas grandes */
-            }
-        }
+.hero img {
+    max-width: 200px; /* logo em evidência */
+    height: auto;
+}
 
         /* ===================== RODAPÉ ===================== */
         footer {
@@ -208,12 +194,11 @@
         </nav>
     </header>
 
-    <!-- ===================== HERO ===================== -->
-    <section class="hero">
-        <!-- LOGO EDITÁVEL -->
-        <img src="logo.png" alt="Logotipo do Digo Channel">
-        <h1>Digo Channel - História e Curiosidades</h1>
-    </section>
+  <!-- ===================== HERO ===================== -->
+<section class="hero">
+    <!-- LOGO CENTRALIZADO -->
+    <img src="logo.png" alt="Logotipo do Digo Channel">
+</section>
 
     <!-- ===================== MAIN ===================== -->
     <main class="flex-grow">
@@ -222,20 +207,25 @@
     </main>
 
     <!-- ===================== RODAPÉ ===================== -->
-    <footer>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">Sobre</a>
-            <a href="#">Contato</a>
-            <a href="#">Política de Privacidade</a>
-        </nav>
-        <div class="social-icons">
-            <a href="#"><i class="bi bi-facebook"></i></a>
-            <a href="#"><i class="bi bi-instagram"></i></a>
-            <a href="#"><i class="bi bi-youtube"></i></a>
-        </div>
-        <p>&copy; <span id="current-year"></span> Digo Channel - História e Curiosidades. Tema por Rodrigo Pontes.</p>
-    </footer>
+<footer>
+    <nav class="main-menu">
+        <a href="#">Home</a>
+        <a href="#">Sobre</a>
+        <a href="#">Contato</a>
+    </nav>
+
+    <div class="privacy">
+        <a href="#">Política de Privacidade</a>
+    </div>
+
+    <div class="social-icons">
+        <a href="#"><i class="bi bi-facebook"></i></a>
+        <a href="#"><i class="bi bi-instagram"></i></a>
+        <a href="#"><i class="bi bi-youtube"></i></a>
+    </div>
+
+    <p>&copy; <span id="current-year"></span> Digo Channel - História e Curiosidades. Tema por Rodrigo Pontes.</p>
+</footer>
 
     <!-- ===================== JS MENU MOBILE ===================== -->
     <script>
