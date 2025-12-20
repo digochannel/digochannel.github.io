@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Playlist — História&Curiosidades</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<style>
+/* ===== RESET ===== */
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#fff;color:#333}
+a{text-decoration:none;color:inherit}
+
+/* ===== CONTAINER ===== */
+.container{
+    width:100%;
+    max-width:1440px;
+    margin:0 auto;
+    padding:0 20px
+}
+
+/* ===== HEADER (PRESERVADO) ===== */
+header{background:#000;color:#fff}
+.header-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    height:70px
+}
+.logo{font-size:1.5rem;font-weight:bold}
+nav{display:flex;gap:20px}
+nav a{color:#fff;font-weight:500}
+nav a:hover{color:#ffcc00}
+nav a.active{color:#ffcc00}
+
+.hamburger{
+    display:none;
+    flex-direction:column;
+    gap:5px;
+    cursor:pointer
+}
+.hamburger span{
+    width:25px;
+    height:3px;
+    background:#fff
+}
+
+/* ===== MAIN ===== */
+main{
+    padding:50px 0;
+    min-height:600px
+}
+
+.series-header{
+    max-width:900px;
+    margin-bottom:30px
+}
+.series-header h1{
+    font-size:2.2rem;
+    margin-bottom:8px
+}
+.series-header p{
+    color:#555;
+    line-height:1.6
+}
+
+/* Player principal */
+.main-player{
+    width:100%;
+    position:relative;
+    padding-bottom:56.25%;
+    background:#000;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,.2)
+}
+.main-player iframe{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:0
+}
+
+/* Botão playlist */
+.playlist-control{
+    margin:20px 0 40px
+}
+.playlist-control button{
+    background:#000;
+    color:#fff;
+    border:0;
+    padding:12px 22px;
+    border-radius:6px;
+    font-weight:bold;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    gap:8px
+}
+.playlist-control button:hover{
+    background:#222
+}
+
+/* Grid vídeos */
+.playlist-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px
+}
+
+.video-card{
+    background:#fff;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+    cursor:pointer;
+    transition:.2s
+}
+.video-card:hover{transform:translateY(-4px)}
+
+.thumb{
+    width:100%;
+    aspect-ratio:16/9;
+    background-size:cover;
+    background-position:center
+}
+.meta{
+    padding:14px;
+    font-size:.95rem;
+    line-height:1.4
+}
+
+/* ===== FOOTER (PRESERVADO) ===== */
+.footer-top{
+    background:#333;
+    color:#fff;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px;
+    flex-wrap:wrap
+}
+.footer-menu{
+    display:flex;
+    flex-direction:column;
+    gap:10px
+}
+.social-icons{
+    display:flex;
+    gap:15px
+}
+.social-icons a{
+    color:#fff;
+    font-size:1.5rem
+}
+.social-icons a:hover{color:#ffcc00}
+
+.footer-bottom{
+    background:#000;
+    color:#fff;
+    text-align:center;
+    padding:10px
+}
+
+/* ===== RESPONSIVO ===== */
+@media(max-width:1024px){
+    .playlist-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:768px){
+    nav{
+        display:none;
+        flex-direction:column;
+        gap:15px;
+        background:#000;
+        position:absolute;
+        top:70px;
+        right:0;
+        width:220px;
+        padding:15px
+    }
+    nav.show{display:flex}
+    .hamburger{display:flex}
+}
+
+@media(max-width:600px){
+    .playlist-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container header-inner">
+    <div class="logo">História&Curiosidades</div>
+
+    <nav id="nav-menu">
+        <a href="https://digochannel.github.io/">Home</a>
+        <a href="#">Sobre</a>
+        <a href="#">Contato</a>
+        <a href="playlist.html" class="active">Playlist</a>
+    </nav>
+
+    <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+    </div>
+</div>
+</header>
+
+<main class="container">
+
+<section class="series-header">
+    <h1>Explorando Marte — Sérgio Sacani</h1>
+    <p>Série completa dedicada à exploração de Marte, tecnologia espacial e os desafios reais da colonização humana.</p>
+</section>
+
+<section>
+    <div class="main-player">
+        <iframe id="player"
+        src="https://www.youtube.com/embed/uK-R__id4Z0?rel=0"
+        allowfullscreen></iframe>
+    </div>
+
+    <div class="playlist-control">
+        <button onclick="playPlaylist()">
+            <i class="bi bi-collection-play-fill"></i> Reproduzir playlist
+        </button>
+    </div>
+</section>
+
+<section class="playlist-grid">
+
+<div class="video-card" onclick="loadVideo(0)">
+<div class="thumb" style="background-image:url('https://img.youtube.com/vi/uK-R__id4Z0/hqdefault.jpg')"></div>
+<div class="meta">Explorando Marte: Como a Primeira Missão Humana Chegou ao Planeta Vermelho #ep01</div>
+</div>
+
+<div class="video-card" onclick="loadVideo(1)">
+<div class="thumb" style="background-image:url('https://img.youtube.com/vi/ez_8MxRxKxM/hqdefault.jpg')"></div>
+<div class="meta">Explorando Marte: Os Desafios da Adaptação e da Sobrevivência na Colônia #ep02</div>
+</div>
+
+<div class="video-card" onclick="loadVideo(2)">
+<div class="thumb" style="background-image:url('https://img.youtube.com/vi/j41UhPl3MUk/hqdefault.jpg')"></div>
+<div class="meta">Explorando Marte: A Busca por Vida e os Riscos da Exploração #ep03</div>
+</div>
+
+<div class="video-card" onclick="loadVideo(3)">
+<div class="thumb" style="background-image:url('https://img.youtube.com/vi/rjtcuH8zo1U/hqdefault.jpg')"></div>
+<div class="meta">Explorando Marte: A Tecnologia e a Visão de Elon Musk para Colonizar o Planeta #ep04</div>
+</div>
+
+<div class="video-card" onclick="loadVideo(4)">
+<div class="thumb" style="background-image:url('https://img.youtube.com/vi/F-9K_3RBr48/hqdefault.jpg')"></div>
+<div class="meta">Explorando Marte: As Dificuldades e as Soluções para Enfrentar uma Tempestade de Areia #ep05</div>
+</div>
+
+<div class="video-card" onclick="loadVideo(5)">
+<div class="thumb" style="background-image:url('https://img.youtube.com/vi/I1O8KZoXVz8/hqdefault.jpg')"></div>
+<div class="meta">Explorando Marte: A Chegada de uma Nova Equipe e o Futuro da Colonização #ep06</div>
+</div>
+
+</section>
+</main>
+
+<footer>
+<div class="footer-top container">
+    <div class="footer-menu">
+        <a href="https://digochannel.github.io/">Home</a>
+        <a href="#">Sobre</a>
+        <a href="#">Contato</a>
+    </div>
+    <div class="social-icons">
+        <a href="#"><i class="bi bi-facebook"></i></a>
+        <a href="#"><i class="bi bi-instagram"></i></a>
+        <a href="#"><i class="bi bi-youtube"></i></a>
+    </div>
+</div>
+<div class="footer-bottom">
+    &copy; <span id="year"></span> História&Curiosidades
+</div>
+</footer>
+
+<script>
+const hamburger=document.getElementById("hamburger");
+const navMenu=document.getElementById("nav-menu");
+hamburger.onclick=()=>navMenu.classList.toggle("show");
+
+const playlist=[
+"uK-R__id4Z0",
+"ez_8MxRxKxM",
+"j41UhPl3MUk",
+"rjtcuH8zo1U",
+"F-9K_3RBr48",
+"I1O8KZoXVz8"
+];
+
+function loadVideo(i){
+    document.getElementById("player").src=
+    "https://www.youtube.com/embed/"+playlist[i]+"?rel=0&autoplay=1";
+    window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function playPlaylist(){loadVideo(0)}
+
+document.getElementById("year").textContent=new Date().getFullYear();
+</script>
+
+</body>
+    </html>
