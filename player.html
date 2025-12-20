@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Playlist - História&Curiosidades</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#fff;
+    color:#333
+}
+
+a{text-decoration:none;color:inherit}
+
+.container{
+    width:100%;
+    max-width:1440px;
+    margin:0 auto;
+    padding:0 20px
+}
+
+/* HEADER */
+header{background:#000;color:#fff}
+
+.header-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    height:70px
+}
+
+.logo{font-size:1.5rem;font-weight:bold}
+
+nav{display:flex;gap:20px}
+
+nav a{color:#fff;font-weight:500}
+nav a:hover{color:#ffcc00}
+
+/* MAIN */
+main{
+    min-height:500px;
+    padding:40px 20px
+}
+
+/* GRID ORIGINAL */
+.playlist-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px
+}
+
+@media(max-width:1024px){
+    .playlist-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:640px){
+    .playlist-grid{grid-template-columns:1fr}
+}
+
+/* CARDS ORIGINAIS */
+.video-card{
+    background:#fff;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+    display:flex;
+    flex-direction:column;
+    cursor:pointer;
+    transition:.2s
+}
+
+.video-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 28px rgba(0,0,0,.15)
+}
+
+.video-wrap{
+    position:relative;
+    width:100%;
+    padding-bottom:56.25%;
+    background:#000
+}
+
+.video-wrap iframe{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:0;
+    pointer-events:none
+}
+
+.meta{
+    padding:16px
+}
+
+/* PLAYER PRINCIPAL (MESMO PADRÃO VISUAL) */
+.main-player{
+    position:relative;
+    width:100%;
+    padding-bottom:56.25%;
+    background:#000;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+    margin-bottom:20px
+}
+
+.main-player iframe{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:0
+}
+
+.playlist-control{
+    margin-bottom:40px
+}
+
+.playlist-control button{
+    background:#000;
+    color:#fff;
+    border:0;
+    padding:12px 20px;
+    border-radius:6px;
+    font-weight:bold;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    cursor:pointer
+}
+
+.playlist-control button:hover{
+    background:#222
+}
+
+/* FOOTER */
+.footer-top{
+    background:#333;
+    color:#fff;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px;
+    flex-wrap:wrap
+}
+
+.footer-menu{
+    display:flex;
+    flex-direction:column;
+    gap:10px
+}
+
+.social-icons{
+    display:flex;
+    gap:15px
+}
+
+.social-icons a{
+    color:#fff;
+    font-size:1.5rem
+}
+
+.social-icons a:hover{color:#ffcc00}
+
+.footer-bottom{
+    background:#000;
+    color:#fff;
+    text-align:center;
+    padding:10px
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container header-inner">
+    <div class="logo">História&Curiosidades</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="#">Sobre</a>
+        <a href="#">Contato</a>
+        <a href="playlist.html" class="font-bold">Playlist</a>
+    </nav>
+</div>
+</header>
+
+<main class="container">
+
+    <section style="margin-bottom:24px">
+        <h1 style="font-size:2rem;font-weight:bold">
+            Explorando Marte — Sérgio Sacani
+        </h1>
+        <p style="margin-top:8px;color:#555;max-width:900px">
+            Série dedicada à exploração de Marte, abordando ciência, tecnologia,
+            riscos e os desafios da colonização do planeta vermelho.
+        </p>
+    </section>
+
+    <section>
+        <div class="main-player">
+            <iframe id="mainPlayer"
+                src="https://www.youtube.com/embed/uK-R__id4Z0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <div class="playlist-control">
+            <button onclick="playPlaylist()">
+                <i class="bi bi-collection-play-fill"></i>
+                Reproduzir playlist
+            </button>
+        </div>
+    </section>
+
+    <section class="playlist-grid">
+
+        <article class="video-card" onclick="loadVideo(0)">
+            <div class="video-wrap">
+                <iframe src="https://www.youtube.com/embed/uK-R__id4Z0"></iframe>
+            </div>
+            <div class="meta">
+                Explorando Marte: Como a Primeira Missão Humana Chegou ao Planeta Vermelho #ep01
+            </div>
+        </article>
+
+        <article class="video-card" onclick="loadVideo(1)">
+            <div class="video-wrap">
+                <iframe src="https://www.youtube.com/embed/ez_8MxRxKxM"></iframe>
+            </div>
+            <div class="meta">
+                Explorando Marte: Os Desafios da Adaptação e da Sobrevivência na Colônia #ep02
+            </div>
+        </article>
+
+        <article class="video-card" onclick="loadVideo(2)">
+            <div class="video-wrap">
+                <iframe src="https://www.youtube.com/embed/j41UhPl3MUk"></iframe>
+            </div>
+            <div class="meta">
+                Explorando Marte: A Busca por Vida e os Riscos da Exploração #ep03
+            </div>
+        </article>
+
+        <article class="video-card" onclick="loadVideo(3)">
+            <div class="video-wrap">
+                <iframe src="https://www.youtube.com/embed/rjtcuH8zo1U"></iframe>
+            </div>
+            <div class="meta">
+                Explorando Marte: A Tecnologia e a Visão de Elon Musk para Colonizar o Planeta #ep04
+            </div>
+        </article>
+
+        <article class="video-card" onclick="loadVideo(4)">
+            <div class="video-wrap">
+                <iframe src="https://www.youtube.com/embed/F-9K_3RBr48"></iframe>
+            </div>
+            <div class="meta">
+                Explorando Marte: As Dificuldades e as Soluções para Enfrentar uma Tempestade de Areia #ep05
+            </div>
+        </article>
+
+        <article class="video-card" onclick="loadVideo(5)">
+            <div class="video-wrap">
+                <iframe src="https://www.youtube.com/embed/I1O8KZoXVz8"></iframe>
+            </div>
+            <div class="meta">
+                Explorando Marte: A Chegada de uma Nova Equipe e o Futuro da Colonização #ep06
+            </div>
+        </article>
+
+    </section>
+
+</main>
+
+<footer>
+<div class="footer-top container">
+    <div class="footer-menu">
+        <a href="index.html">Home</a>
+        <a href="#">Sobre</a>
+        <a href="#">Contato</a>
+    </div>
+    <div class="social-icons">
+        <a href="#"><i class="bi bi-facebook"></i></a>
+        <a href="#"><i class="bi bi-instagram"></i></a>
+        <a href="#"><i class="bi bi-youtube"></i></a>
+    </div>
+</div>
+<div class="footer-bottom">
+    &copy; <span id="year"></span> História&Curiosidades
+</div>
+</footer>
+
+<script>
+const playlist=[
+    "uK-R__id4Z0",
+    "ez_8MxRxKxM",
+    "j41UhPl3MUk",
+    "rjtcuH8zo1U",
+    "F-9K_3RBr48",
+    "I1O8KZoXVz8"
+];
+
+function loadVideo(i){
+    document.getElementById("mainPlayer").src=
+    "https://www.youtube.com/embed/"+playlist[i];
+    window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function playPlaylist(){
+    loadVideo(0);
+}
+
+document.getElementById("year").textContent=new Date().getFullYear();
+</script>
+
+</body>
+  </html>
