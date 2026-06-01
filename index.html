@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -293,6 +294,55 @@
                 font-size:3rem;
             }
         }
+
+<!-- Contato -->
+
+.contact-card{
+    background:var(--branco);
+    border-radius:var(--radius);
+    padding:2rem;
+    box-shadow:var(--sombra);
+}
+
+.contact-card h2{
+    color:var(--azul-marinho);
+    text-align:center;
+    margin-bottom:1rem;
+}
+
+.contact-card .form-label{
+    font-weight:600;
+    color:var(--azul-marinho);
+}
+
+.contact-card .form-control{
+    border-radius:12px;
+    padding:0.85rem;
+}
+
+.contact-card .form-control:focus{
+    border-color:var(--amarelo-ovo);
+    box-shadow:0 0 0 .2rem rgba(245,197,24,.25);
+}
+
+.btn-contact{
+    background:var(--azul-marinho);
+    color:var(--branco);
+    border:none;
+    padding:0.9rem 2rem;
+    border-radius:12px;
+    font-weight:600;
+}
+
+.btn-contact:hover{
+    background:#12376b;
+}
+
+.form-status{
+    margin-top:1rem;
+    text-align:center;
+    font-weight:600;
+}
     </style>
 </head>
 
@@ -379,6 +429,85 @@
             </p>
 
         </section>
+
+<section class="contact-card">
+
+    <h2>Entre em Contato</h2>
+
+    <div class="decorative-line"></div>
+
+    <form id="contactForm">
+
+        <div class="mb-3">
+            <label class="form-label">
+                Nome
+            </label>
+
+            <input
+                type="text"
+                id="nome"
+                class="form-control"
+                required
+            >
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">
+                E-mail
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                class="form-control"
+                required
+            >
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">
+                Contato (Opcional)
+            </label>
+
+            <input
+                type="text"
+                id="contato"
+                class="form-control"
+            >
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">
+                Mensagem
+            </label>
+
+            <textarea
+                id="mensagem"
+                rows="6"
+                class="form-control"
+                required
+            ></textarea>
+        </div>
+
+        <div class="text-center">
+
+            <button
+                type="submit"
+                class="btn-contact"
+            >
+                Enviar Mensagem
+            </button>
+
+        </div>
+
+        <div
+            id="formStatus"
+            class="form-status"
+        ></div>
+
+    </form>
+
+</section>
 
     </main>
 
@@ -467,6 +596,71 @@
         */
 
     </script>
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+
+import {
+    getFirestore,
+    collection,
+    addDoc
+}
+from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDLyifbiSCmDtCj6mBeqWSAAgx4XQ--16M",
+    authDomain: "formulario-teste-afc68.firebaseapp.com",
+    projectId: "formulario-teste-afc68",
+    storageBucket: "formulario-teste-afc68.firebasestorage.app",
+    messagingSenderId: "420370097841",
+    appId: "1:420370097841:web:43d1783c8da06639446490",
+    measurementId: "G-45PFKXBX1W"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const form = document.getElementById("contactForm");
+const status = document.getElementById("formStatus");
+
+form.addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+
+    status.textContent = "Enviando...";
+
+    try {
+
+        await addDoc(
+            collection(db, "formularios"),
+            {
+                nome: document.getElementById("nome").value,
+                email: document.getElementById("email").value,
+                contato: document.getElementById("contato").value,
+                mensagem: document.getElementById("mensagem").value,
+                dataEnvio: new Date().toISOString()
+            }
+        );
+
+        status.textContent =
+            "Mensagem enviada com sucesso!";
+
+        form.reset();
+
+    } catch (erro) {
+
+        console.error(erro);
+
+        status.textContent =
+            "Erro ao enviar mensagem.";
+
+    }
+
+});
+
+</script>
 
 </body>
 </html>
