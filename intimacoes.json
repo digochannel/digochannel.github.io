@@ -1,0 +1,74 @@
+[
+  {
+    "nome": "CIMAFER COMERCIO DE MATERIAL CONSTR",
+    "logradouro": "AV DOUTOR CARLOS BARBOSA",
+    "numero": "760",
+    "complemento": "820",
+    "cep": "90880-000",
+    "bairro": "",
+    "cidade": "PORTO ALEGRE"
+  },
+  {
+    "nome": "LEANDRO DOS SANTOS GARBINATTO",
+    "logradouro": "AV DR CARLOS BARBOSA",
+    "numero": "1389",
+    "complemento": "",
+    "cep": "90880-000",
+    "bairro": "MEDIANEIRA",
+    "cidade": "PORTO ALEGRE"
+  },
+  {
+    "nome": "CIMAFER COMERCIO DE MATERIAL DE CONSTRUC",
+    "logradouro": "AV DR CARLOS BARBOSA",
+    "numero": "760",
+    "complemento": "820",
+    "cep": "90880-000",
+    "bairro": "",
+    "cidade": "PORTO ALEGRE"
+  },
+  {
+    "nome": "MAMUTH COMERCIO DE ALIMENTOS E SERVICOS",
+    "logradouro": "AVENIDA GETULIO VARGAS",
+    "numero": "1151",
+    "complemento": "811",
+    "cep": "90150-005",
+    "bairro": "MENINO DEUS",
+    "cidade": "PORTO ALEGRE"
+  },
+  {
+    "nome": "TREND CAR MECANICA E SERVICOSA",
+    "logradouro": "AV GETULIO VARGAS",
+    "numero": "1671",
+    "complemento": "",
+    "cep": "90150-005",
+    "bairro": "MENINO DEUS",
+    "cidade": "PORTO ALEGRE"
+  },
+  {
+    "nome": "TRACK & FIELD CO S.A.",
+    "logradouro": "PRAIA DE BELAS",
+    "numero": "1181",
+    "complemento": "",
+    "cep": "90110-001",
+    "bairro": "",
+    "cidade": "PORTO ALEGRE"
+  },
+  {
+    "nome": "RESIDENCIAL GERIATRICO SANTA E",
+    "logradouro": "R. COSTA",
+    "numero": "412",
+    "complemento": "",
+    "cep": "90110-270",
+    "bairro": "MENINO DEUS",
+    "cidade": "PORTO ALEGRE"
+  },
+  {
+    "nome": "CALDWELL COMERCIO DE GAS LTDA",
+    "logradouro": "R GENERAL CALDWELL",
+    "numero": "910",
+    "complemento": "",
+    "cep": "90130-050",
+    "bairro": "MENINO DEUS",
+    "cidade": "PORTO ALEGRE"
+  }
+]
