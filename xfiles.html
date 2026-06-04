@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sistema de Diligências - Teste GPS por Pontos</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+body{
+    background:#f5f7fa;
+}
+
+.navbar{
+    background:#198754;
+}
+
+.card{
+    border:none;
+    border-radius:15px;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.btn{
+    transition:.25s;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+.kpi{
+    font-size:1.5rem;
+    font-weight:bold;
+}
+
+.status-box{
+    background:white;
+    border-radius:15px;
+    padding:15px;
+}
+
+.table-responsive{
+    max-height:400px;
+}
+
+footer{
+    margin-top:40px;
+    padding:20px;
+    text-align:center;
+    color:#666;
+}
+</style>
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+<div class="container">
+
+<span class="navbar-brand">
+<i class="bi bi-geo-alt-fill"></i>
+Sistema de Diligências
+</span>
+
+</div>
+</nav>
+
+<div class="container py-4">
+
+<div class="row g-3">
+
+<div class="col-md-4">
+<div class="card p-3">
+<div class="text-muted">Pontos Registrados</div>
+<div class="kpi" id="totalPontos">0</div>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card p-3">
+<div class="text-muted">Distância Total</div>
+<div class="kpi" id="distanciaTotal">0 km</div>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card p-3">
+<div class="text-muted">Tempo da Diligência</div>
+<div class="kpi" id="tempoTotal">00:00:00</div>
+</div>
+</div>
+
+</div>
+
+<div class="card mt-4 p-4">
+
+<h4 class="mb-4">
+<i class="bi bi-map"></i>
+Controle GPS por Pontos
+</h4>
+
+<div class="d-flex flex-wrap gap-2">
+
+<button class="btn btn-success" onclick="iniciarDiligencia()">
+<i class="bi bi-play-fill"></i>
+Iniciar Diligência
+</button>
+
+<button class="btn btn-primary" onclick="registrarPonto()">
+<i class="bi bi-geo-alt-fill"></i>
+Registrar Ponto GPS
+</button>
+
+<button class="btn btn-danger" onclick="finalizarDiligencia()">
+<i class="bi bi-stop-fill"></i>
+Finalizar Diligência
+</button>
+
+<button class="btn btn-secondary" onclick="limparTudo()">
+<i class="bi bi-arrow-clockwise"></i>
+Reiniciar
+</button>
+
+</div>
+
+<div class="alert alert-light mt-3 mb-0" id="status">
+Sistema aguardando início.
+</div>
+
+</div>
+
+<div class="card mt-4 p-4">
+
+<h5>
+<i class="bi bi-clock-history"></i>
+Histórico de Pontos
+</h5>
+
+<div class="table-responsive">
+
+<table class="table table-striped align-middle">
+
+<thead>
+<tr>
+<th>#</th>
+<th>Data/Hora</th>
+<th>Latitude</th>
+<th>Longitude</th>
+<th>Distância Acumulada</th>
+</tr>
+</thead>
+
+<tbody id="tabelaPontos"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+Sistema Demonstrativo de GPS por Pontos
+</footer>
+
+<script>
+
+let pontos = [];
+let inicioDiligencia = null;
+let timerInterval = null;
+
+function atualizarTempo(){
+
+    if(!inicioDiligencia) return;
+
+    const agora = new Date();
+
+    const diff = agora - inicioDiligencia;
+
+    const horas =
+    String(Math.floor(diff / 3600000)).padStart(2,'0');
+
+    const minutos =
+    String(Math.floor((diff % 3600000)/60000)).padStart(2,'0');
+
+    const segundos =
+    String(Math.floor((diff % 60000)/1000)).padStart(2,'0');
+
+    document.getElementById("tempoTotal").innerText =
+    `${horas}:${minutos}:${segundos}`;
+
+}
+
+function iniciarDiligencia(){
+
+    if(inicioDiligencia){
+        alert("Diligência já iniciada.");
+        return;
+    }
+
+    inicioDiligencia = new Date();
+
+    timerInterval =
+    setInterval(atualizarTempo,1000);
+
+    document.getElementById("status").innerHTML =
+    "✅ Diligência iniciada.";
+
+    registrarPonto();
+
+}
+
+function finalizarDiligencia(){
+
+    if(!inicioDiligencia){
+        alert("Nenhuma diligência iniciada.");
+        return;
+    }
+
+    registrarPonto();
+
+    clearInterval(timerInterval);
+
+    document.getElementById("status").innerHTML =
+    "🏁 Diligência finalizada.";
+
+}
+
+function registrarPonto(){
+
+    if(!navigator.geolocation){
+
+        alert("GPS não suportado.");
+        return;
+
+    }
+
+    document.getElementById("status").innerHTML =
+    "📡 Obtendo localização...";
+
+    navigator.geolocation.getCurrentPosition(
+
+        function(pos){
+
+            const novoPonto = {
+
+                dataHora:new Date(),
+
+                lat:pos.coords.latitude,
+
+                lng:pos.coords.longitude
+
+            };
+
+            pontos.push(novoPonto);
+
+            atualizarTabela();
+
+            document.getElementById("status").innerHTML =
+            "✅ Localização registrada.";
+
+        },
+
+        function(erro){
+
+            alert(
+            "Não foi possível obter o GPS."
+            );
+
+        },
+
+        {
+            enableHighAccuracy:true
+        }
+
+    );
+
+}
+
+function atualizarTabela(){
+
+    const tbody =
+    document.getElementById("tabelaPontos");
+
+    tbody.innerHTML = "";
+
+    let distanciaTotal = 0;
+
+    pontos.forEach((ponto,index)=>{
+
+        if(index > 0){
+
+            distanciaTotal += calcularDistancia(
+
+                pontos[index-1].lat,
+                pontos[index-1].lng,
+
+                ponto.lat,
+                ponto.lng
+
+            );
+
+        }
+
+        tbody.innerHTML += `
+        <tr>
+            <td>${index+1}</td>
+            <td>${ponto.dataHora.toLocaleString()}</td>
+            <td>${ponto.lat.toFixed(6)}</td>
+            <td>${ponto.lng.toFixed(6)}</td>
+            <td>${distanciaTotal.toFixed(2)} km</td>
+        </tr>
+        `;
+
+    });
+
+    document.getElementById("totalPontos").innerText =
+    pontos.length;
+
+    document.getElementById("distanciaTotal").innerText =
+    distanciaTotal.toFixed(2) + " km";
+
+}
+
+function calcularDistancia(lat1, lon1, lat2, lon2){
+
+    const R = 6371;
+
+    const dLat = deg2rad(lat2-lat1);
+    const dLon = deg2rad(lon2-lon1);
+
+    const a =
+        Math.sin(dLat/2) *
+        Math.sin(dLat/2) +
+
+        Math.cos(deg2rad(lat1)) *
+        Math.cos(deg2rad(lat2)) *
+
+        Math.sin(dLon/2) *
+        Math.sin(dLon/2);
+
+    const c =
+        2 *
+        Math.atan2(
+            Math.sqrt(a),
+            Math.sqrt(1-a)
+        );
+
+    return R*c;
+
+}
+
+function deg2rad(grau){
+
+    return grau * (Math.PI/180);
+
+}
+
+function limparTudo(){
+
+    if(
+        !confirm(
+        "Deseja apagar todos os registros?"
+        )
+    ) return;
+
+    pontos = [];
+
+    inicioDiligencia = null;
+
+    clearInterval(timerInterval);
+
+    document.getElementById("tabelaPontos").innerHTML = "";
+
+    document.getElementById("totalPontos").innerText = "0";
+
+    document.getElementById("distanciaTotal").innerText =
+    "0 km";
+
+    document.getElementById("tempoTotal").innerText =
+    "00:00:00";
+
+    document.getElementById("status").innerHTML =
+    "Sistema reiniciado.";
+
+}
+
+</script>
+
+</body>
+  </html>
