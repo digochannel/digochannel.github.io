@@ -654,5 +654,41 @@ carregarDados();
 
 </script>
 
+    <script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+
+import {
+    getAuth,
+    onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBqpr6sS-XmBhW-eS93HRLyiZTnpdVbbDw",
+    authDomain: "login-e-autenticacao-5de2c.firebaseapp.com",
+    projectId: "login-e-autenticacao-5de2c",
+    storageBucket: "login-e-autenticacao-5de2c.firebasestorage.app",
+    messagingSenderId: "596131686598",
+    appId: "1:596131686598:web:9809a048a3bba2d5c34fc7"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+onAuthStateChanged(auth, (user) => {
+
+    if (!user) {
+
+        window.location.href =
+            "login.html";
+
+    }
+
+});
+
+    </script>
+
 </body>
 </html>
