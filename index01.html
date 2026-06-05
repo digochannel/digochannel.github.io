@@ -677,18 +677,27 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+/* Esconde a página até validar a sessão */
+document.body.style.visibility = "hidden";
+
 onAuthStateChanged(auth, (user) => {
 
-    if (!user) {
+    if (user) {
 
-        window.location.href =
-            "login.html";
+        document.body.style.visibility = "visible";
+
+        console.log("Usuário autenticado:", user.email);
+
+    } else {
+
+        window.location.replace(
+            "https://digochannel.github.io/login.html"
+        );
 
     }
 
 });
 
-    </script>
-
+</script>
 </body>
 </html>
