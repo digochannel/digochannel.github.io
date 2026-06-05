@@ -34,7 +34,6 @@ h1{
     text-align:center;
     margin-bottom:24px;
     color:#333;
-    font-size:28px;
 }
 
 .input-group{
@@ -87,16 +86,19 @@ button{
     margin-bottom:10px;
 }
 
-#btnLogin:hover{
-    opacity:.9;
-}
-
 #btnCadastro{
     background:#34a853;
     color:white;
+    margin-bottom:10px;
 }
 
-#btnCadastro:hover{
+#btnLogout{
+    background:#ea4335;
+    color:white;
+    display:none;
+}
+
+button:hover{
     opacity:.9;
 }
 
@@ -104,22 +106,14 @@ button{
     margin-top:15px;
     text-align:center;
     font-size:14px;
-    color:#444;
     min-height:20px;
 }
 
 #usuarioLogado{
-    margin-top:15px;
+    margin-top:10px;
     text-align:center;
+    color:#198754;
     font-size:14px;
-    color:#1b5e20;
-}
-
-#btnLogout{
-    display:none;
-    margin-top:12px;
-    background:#ea4335;
-    color:white;
 }
 </style>
 </head>
@@ -150,17 +144,11 @@ button{
         <label for="lembrar">Lembrar-me</label>
     </div>
 
-    <button id="btnLogin">
-        Entrar
-    </button>
+    <button id="btnLogin">Entrar</button>
 
-    <button id="btnCadastro">
-        Criar Conta
-    </button>
+    <button id="btnCadastro">Criar Conta</button>
 
-    <button id="btnLogout">
-        Sair
-    </button>
+    <button id="btnLogout">Sair</button>
 
     <div id="status"></div>
 
@@ -208,21 +196,29 @@ const btnLogin = document.getElementById("btnLogin");
 const btnCadastro = document.getElementById("btnCadastro");
 const btnLogout = document.getElementById("btnLogout");
 
+/* CADASTRO */
+
 btnCadastro.addEventListener("click", async () => {
 
     status.textContent = "Criando conta...";
 
     try {
 
-        const credencial =
-            await createUserWithEmailAndPassword(
-                auth,
-                email.value,
-                senha.value
-            );
+        await createUserWithEmailAndPassword(
+            auth,
+            email.value.trim(),
+            senha.value
+        );
 
         status.textContent =
             "Conta criada com sucesso!";
+
+        setTimeout(() => {
+
+            window.location.href =
+            "https://digochannel.github.io/index01.html";
+
+        }, 800);
 
     } catch (erro) {
 
@@ -232,6 +228,8 @@ btnCadastro.addEventListener("click", async () => {
     }
 
 });
+
+/* LOGIN */
 
 btnLogin.addEventListener("click", async () => {
 
@@ -248,12 +246,19 @@ btnLogin.addEventListener("click", async () => {
 
         await signInWithEmailAndPassword(
             auth,
-            email.value,
+            email.value.trim(),
             senha.value
         );
 
         status.textContent =
             "Login realizado com sucesso!";
+
+        setTimeout(() => {
+
+            window.location.href =
+            "https://digochannel.github.io/index01.html";
+
+        }, 500);
 
     } catch (erro) {
 
@@ -263,6 +268,8 @@ btnLogin.addEventListener("click", async () => {
     }
 
 });
+
+/* LOGOUT */
 
 btnLogout.addEventListener("click", async () => {
 
@@ -281,6 +288,8 @@ btnLogout.addEventListener("click", async () => {
     }
 
 });
+
+/* MONITORAMENTO DA SESSÃO */
 
 onAuthStateChanged(auth, (user) => {
 
