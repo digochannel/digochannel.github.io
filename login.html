@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Firebase</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#ffffff;
+}
+
+.login-card{
+    width:100%;
+    max-width:400px;
+    padding:32px;
+    border:1px solid #e0e0e0;
+    border-radius:16px;
+    box-shadow:0 4px 20px rgba(0,0,0,.08);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:24px;
+    color:#333;
+    font-size:28px;
+}
+
+.input-group{
+    margin-bottom:16px;
+}
+
+label{
+    display:block;
+    margin-bottom:6px;
+    color:#555;
+    font-size:14px;
+}
+
+input[type="email"],
+input[type="password"]{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    outline:none;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus{
+    border-color:#1a73e8;
+}
+
+.options{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:16px;
+    font-size:14px;
+}
+
+button{
+    width:100%;
+    border:none;
+    padding:12px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:bold;
+    transition:.2s;
+}
+
+#btnLogin{
+    background:#1a73e8;
+    color:white;
+    margin-bottom:10px;
+}
+
+#btnLogin:hover{
+    opacity:.9;
+}
+
+#btnCadastro{
+    background:#34a853;
+    color:white;
+}
+
+#btnCadastro:hover{
+    opacity:.9;
+}
+
+#status{
+    margin-top:15px;
+    text-align:center;
+    font-size:14px;
+    color:#444;
+    min-height:20px;
+}
+
+#usuarioLogado{
+    margin-top:15px;
+    text-align:center;
+    font-size:14px;
+    color:#1b5e20;
+}
+
+#btnLogout{
+    display:none;
+    margin-top:12px;
+    background:#ea4335;
+    color:white;
+}
+</style>
+</head>
+<body>
+
+<div class="login-card">
+
+    <h1>Login</h1>
+
+    <div class="input-group">
+        <label for="email">E-mail</label>
+        <input
+            type="email"
+            id="email"
+            placeholder="Digite seu e-mail">
+    </div>
+
+    <div class="input-group">
+        <label for="senha">Senha</label>
+        <input
+            type="password"
+            id="senha"
+            placeholder="Digite sua senha">
+    </div>
+
+    <div class="options">
+        <input type="checkbox" id="lembrar">
+        <label for="lembrar">Lembrar-me</label>
+    </div>
+
+    <button id="btnLogin">
+        Entrar
+    </button>
+
+    <button id="btnCadastro">
+        Criar Conta
+    </button>
+
+    <button id="btnLogout">
+        Sair
+    </button>
+
+    <div id="status"></div>
+
+    <div id="usuarioLogado"></div>
+
+</div>
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js";
+
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged,
+    setPersistence,
+    browserLocalPersistence,
+    browserSessionPersistence
+}
+from "https://www.gstatic.com/firebasejs/12.14.0/firebase-auth.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBqpr6sS-XmBhW-eS93HRLyiZTnpdVbbDw",
+    authDomain: "login-e-autenticacao-5de2c.firebaseapp.com",
+    projectId: "login-e-autenticacao-5de2c",
+    storageBucket: "login-e-autenticacao-5de2c.firebasestorage.app",
+    messagingSenderId: "596131686598",
+    appId: "1:596131686598:web:9809a048a3bba2d5c34fc7"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+const email = document.getElementById("email");
+const senha = document.getElementById("senha");
+const lembrar = document.getElementById("lembrar");
+
+const status = document.getElementById("status");
+const usuarioLogado = document.getElementById("usuarioLogado");
+
+const btnLogin = document.getElementById("btnLogin");
+const btnCadastro = document.getElementById("btnCadastro");
+const btnLogout = document.getElementById("btnLogout");
+
+btnCadastro.addEventListener("click", async () => {
+
+    status.textContent = "Criando conta...";
+
+    try {
+
+        const credencial =
+            await createUserWithEmailAndPassword(
+                auth,
+                email.value,
+                senha.value
+            );
+
+        status.textContent =
+            "Conta criada com sucesso!";
+
+    } catch (erro) {
+
+        status.textContent =
+            erro.message;
+
+    }
+
+});
+
+btnLogin.addEventListener("click", async () => {
+
+    status.textContent = "Entrando...";
+
+    try {
+
+        await setPersistence(
+            auth,
+            lembrar.checked
+                ? browserLocalPersistence
+                : browserSessionPersistence
+        );
+
+        await signInWithEmailAndPassword(
+            auth,
+            email.value,
+            senha.value
+        );
+
+        status.textContent =
+            "Login realizado com sucesso!";
+
+    } catch (erro) {
+
+        status.textContent =
+            erro.message;
+
+    }
+
+});
+
+btnLogout.addEventListener("click", async () => {
+
+    try {
+
+        await signOut(auth);
+
+        status.textContent =
+            "Sessão encerrada.";
+
+    } catch (erro) {
+
+        status.textContent =
+            erro.message;
+
+    }
+
+});
+
+onAuthStateChanged(auth, (user) => {
+
+    if(user){
+
+        usuarioLogado.innerHTML =
+            "<strong>Logado:</strong> " +
+            user.email;
+
+        btnLogout.style.display = "block";
+
+    } else {
+
+        usuarioLogado.innerHTML = "";
+
+        btnLogout.style.display = "none";
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
