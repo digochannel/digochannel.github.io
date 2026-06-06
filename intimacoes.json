@@ -1,74 +1,242 @@
 [
   {
-    "nome": "CIMAFER COMERCIO DE MATERIAL CONSTR",
-    "logradouro": "AV DOUTOR CARLOS BARBOSA",
+    "devedor": "CIMAFER COMERCIO DE MATERIAL CONSTR",
+    "cnpj_cpf_devedor": "88.297.544/0001-08",
+    "endereco": "AV DOUTOR CARLOS BARBOSA",
     "numero": "760",
     "complemento": "820",
     "cep": "90880-000",
-    "bairro": "",
-    "cidade": "PORTO ALEGRE"
+    "credor": {
+      "nome": "JACKWAL SA",
+      "cnpj_cpf": "92.782.366/0001-88",
+      "endereco": "RUA DOS ANDRADAS",
+      "numero": "1234",
+      "complemento": "4º Andar",
+      "cep": "não informado"
+    }
   },
   {
-    "nome": "LEANDRO DOS SANTOS GARBINATTO",
-    "logradouro": "AV DR CARLOS BARBOSA",
+    "devedor": "LEANDRO DOS SANTOS GARBINATTO",
+    "cnpj_cpf_devedor": "018.745.220-22",
+    "endereco": "AV DR CARLOS BARBOSA",
     "numero": "1389",
-    "complemento": "",
+    "complemento": "não informado",
     "cep": "90880-000",
-    "bairro": "MEDIANEIRA",
-    "cidade": "PORTO ALEGRE"
+    "credor": {
+      "nome": "CREDIARE S/A - CREDITO, FINANCIAMENTO E INVESTIMENTO",
+      "cnpj_cpf": "05.676.026/0001-78",
+      "endereco": "RUA DOS ANDRADAS",
+      "numero": "1234",
+      "complemento": "4º Andar",
+      "cep": "90880-000"
+    }
   },
   {
-    "nome": "CIMAFER COMERCIO DE MATERIAL DE CONSTRUC",
-    "logradouro": "AV DR CARLOS BARBOSA",
-    "numero": "760",
-    "complemento": "820",
-    "cep": "90880-000",
-    "bairro": "",
-    "cidade": "PORTO ALEGRE"
-  },
-  {
-    "nome": "MAMUTH COMERCIO DE ALIMENTOS E SERVICOS",
-    "logradouro": "AVENIDA GETULIO VARGAS",
+    "devedor": "MAMUTH COMERCIO DE ALIMENTOS E SERVICO",
+    "cnpj_cpf_devedor": "12.038.779/0001-13",
+    "endereco": "AVENIDA GETULIO VARGAS",
     "numero": "1151",
     "complemento": "811",
     "cep": "90150-005",
-    "bairro": "MENINO DEUS",
-    "cidade": "PORTO ALEGRE"
+    "credor": {
+      "nome": "SELLEN INVESTIMENTOS IMOBILIARIOS LTDA",
+      "cnpj_cpf": "51.056.245/0001-71",
+      "endereco": "RUA DOS ANDRADAS",
+      "numero": "1234",
+      "complemento": "4º Andar",
+      "cep": "90150-005"
+    }
   },
   {
-    "nome": "TREND CAR MECANICA E SERVICOSA",
-    "logradouro": "AV GETULIO VARGAS",
+    "devedor": "TREND CAR MECANICA E SERVICOS",
+    "cnpj_cpf_devedor": "35.335.559/0001-57",
+    "endereco": "AV GETULIO VARGAS",
     "numero": "1671",
-    "complemento": "",
+    "complemento": "não informado",
     "cep": "90150-005",
-    "bairro": "MENINO DEUS",
-    "cidade": "PORTO ALEGRE"
+    "credor": {
+      "nome": "MG VIDROS AUTOMOTIVOS LTDA",
+      "cnpj_cpf": "07.571.746/0001-02",
+      "endereco": "não informado",
+      "numero": "não informado",
+      "complemento": "não informado",
+      "cep": "não informado"
+    }
   },
   {
-    "nome": "TRACK & FIELD CO S.A.",
-    "logradouro": "PRAIA DE BELAS",
+    "devedor": "TRACK & FIELD CO S.A.",
+    "cnpj_cpf_devedor": "59.418.806/0079-07",
+    "endereco": "PRAIA DE BELAS",
     "numero": "1181",
-    "complemento": "",
+    "complemento": "não informado",
     "cep": "90110-001",
-    "bairro": "",
-    "cidade": "PORTO ALEGRE"
+    "credor": {
+      "nome": "ENGINSUL COMERCIO DE EXTINTORES LTD",
+      "cnpj_cpf": "93.841.922/0001-02",
+      "endereco": "não informado",
+      "numero": "não informado",
+      "complemento": "não informado",
+      "cep": "não informado"
+    }
   },
   {
-    "nome": "RESIDENCIAL GERIATRICO SANTA E",
-    "logradouro": "R. COSTA",
+    "devedor": "RESIDENCIAL GERIATRICO SANTA E",
+    "cnpj_cpf_devedor": "09.194.833/0001-05",
+    "endereco": "R. COSTA",
     "numero": "412",
-    "complemento": "",
+    "complemento": "não informado",
     "cep": "90110-270",
-    "bairro": "MENINO DEUS",
-    "cidade": "PORTO ALEGRE"
+    "credor": {
+      "nome": "ACTION PLANE C G I LTDA",
+      "cnpj_cpf": "02.157.205/0001-00",
+      "endereco": "não informado",
+      "numero": "não informado",
+      "complemento": "não informado",
+      "cep": "não informado"
+    }
   },
   {
-    "nome": "CALDWELL COMERCIO DE GAS LTDA",
-    "logradouro": "R GENERAL CALDWELL",
+    "devedor": "CALDWELL COMERCIO DE GAS LTDA",
+    "cnpj_cpf_devedor": "43.104.527/0001-79",
+    "endereco": "R GENERAL CALDWELL",
     "numero": "910",
-    "complemento": "",
+    "complemento": "não informado",
     "cep": "90130-050",
-    "bairro": "MENINO DEUS",
-    "cidade": "PORTO ALEGRE"
+    "credor": {
+      "nome": "S F LEAL EVOPEL BOBINAS E ETIQUETAS",
+      "cnpj_cpf": "22.407.778/0001-52",
+      "endereco": "R GENERAL CALDWELL",
+      "numero": "910",
+      "complemento": "não informado",
+      "cep": "90130-050"
+    }
+  },
+  {
+    "devedor": "DUCATTI ENGENHARIA LTDA",
+    "cnpj_cpf_devedor": "92.469.980/0001-94",
+    "endereco": "RUA VISCONDE DO HERVAL",
+    "numero": "1203",
+    "complemento": "AZENHA",
+    "cep": "90130-151",
+    "credor": {
+      "nome": "PK SUL - FABRICACAO E COMERCIO",
+      "cnpj_cpf": "45.972.505/0001-56",
+      "endereco": "não informado",
+      "numero": "não informado",
+      "complemento": "não informado",
+      "cep": "90130-151"
+    }
+  },
+  {
+    "devedor": "ARGENTA E MELO COMERCIO DE PRODUTOS P",
+    "cnpj_cpf_devedor": "40.761.965/0001-11",
+    "endereco": "AVENIDA IPIRANGA",
+    "numero": "999",
+    "complemento": "SALA 04",
+    "cep": "90160-092",
+    "credor": {
+      "nome": "SIM REDE DE POSTOS LTDA",
+      "cnpj_cpf": "07.473.735/0001-81",
+      "endereco": "não informado",
+      "numero": "não informado",
+      "complemento": "não informado",
+      "cep": "90160-092"
+    }
+  },
+  {
+    "devedor": "LD ARQUITETURA E CONSTRUCAO LTDA",
+    "cnpj_cpf_devedor": "42.811.619/0001-26",
+    "endereco": "AV. ERICO VERISSIMO",
+    "numero": "1140",
+    "complemento": "SALA 405",
+    "cep": "90160-180",
+    "credor": {
+      "nome": "FERRAMATE MATERIAIS DE CONSTRU",
+      "cnpj_cpf": "09.100.833/0001-07",
+      "endereco": "não informado",
+      "numero": "não informado",
+      "complemento": "não informado",
+      "cep": "90160-180"
+    }
+  },
+  {
+    "devedor": "P. DE MATTOS VALLE- EMP IND",
+    "cnpj_cpf_devedor": "49.935.105/0001-21",
+    "endereco": "AV DIARIO DE NOTICIAS",
+    "numero": "300",
+    "complemento": "LJ 1063",
+    "cep": "90810-080",
+    "credor": {
+      "nome": "HG EMBALAGENS LTDA",
+      "cnpj_cpf": "60.119.847/0001-11",
+      "endereco": "não informado",
+      "numero": "não informado",
+      "complemento": "não informado",
+      "cep": "90810-080"
+    }
+  },
+  {
+    "devedor": "HELWIG VIAGENS E TURISMO LTDA",
+    "cnpj_cpf_devedor": "11.485.689/0001-08",
+    "endereco": "DIARIO DE NOTICIAS",
+    "numero": "200",
+    "complemento": "SL 1502",
+    "cep": "90810-080",
+    "credor": {
+      "nome": "LEAR - VIAGENS TURISMO E EVENTOS LTDA",
+      "cnpj_cpf": "73.458.374/0001-29",
+      "endereco": "não informado",
+      "numero": "não informado",
+      "complemento": "não informado",
+      "cep": "90810-080"
+    }
+  },
+  {
+    "devedor": "MINIMERCADO DOS GRINGOS LTDA",
+    "cnpj_cpf_devedor": "57.819.149/0001-14",
+    "endereco": "RUA BUTUI",
+    "numero": "209",
+    "complemento": "não informado",
+    "cep": "90820-150",
+    "credor": {
+      "nome": "ANCHIETA ALIMENTOS LTDA",
+      "cnpj_cpf": "13.403.885/0001-11",
+      "endereco": "não informado",
+      "numero": "não informado",
+      "complemento": "não informado",
+      "cep": "90820-150"
+    }
+  },
+  {
+    "devedor": "RENATA SCHEFFER DOS SANTOS",
+    "cnpj_cpf_devedor": "008.428.590-71",
+    "endereco": "R JAGUARI",
+    "numero": "1193",
+    "complemento": "1",
+    "cep": "90820-180",
+    "credor": {
+      "nome": "CREDIARE S/A - CREDITO, FINANCIAMENTO E",
+      "cnpj_cpf": "05.676.026/0001-78",
+      "endereco": "não informado",
+      "numero": "não informado",
+      "complemento": "não informado",
+      "cep": "não informado"
+    }
+  },
+  {
+    "devedor": "ESCHELEY LUCIANE DA SILVA GUIMARAES",
+    "cnpj_cpf_devedor": "50.251.625/0001-02",
+    "endereco": "RUA COMANDAI",
+    "numero": "282",
+    "complemento": "não informado",
+    "cep": "90830-530",
+    "credor": {
+      "nome": "JKF CARNES LTDA",
+      "cnpj_cpf": "13.000.015/0001-00",
+      "endereco": "não informado",
+      "numero": "não informado",
+      "complemento": "não informado",
+      "cep": "não informado"
+    }
   }
 ]
