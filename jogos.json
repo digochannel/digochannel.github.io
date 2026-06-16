@@ -1,0 +1,247 @@
+{
+  "tournament": "Copa do Mundo 2026 - Calendário de Jogos",
+  "phases": [
+    {
+      "phase": "Fase de Grupos - Rodada 1",
+      "days": [
+        {
+          "date": "2026-06-16",
+          "day": "Tuesday",
+          "matches": [
+            {
+              "group": "J",
+              "home": "Áustria",
+              "away": "Jordânia",
+              "venue": "Santa Clara (Região da Baía de San Francisco)",
+              "country": "EUA",
+              "local_time": "21:00",
+              "time_zones": {
+                "BR": "01:00 (17 Jun)",
+                "CV": "03:00 (17 Jun)",
+                "PT": "05:00 (17 Jun)"
+              }
+            },
+            {
+              "group": "I",
+              "home": "França",
+              "away": "Senegal",
+              "venue": "Nova York/Nova Jersey",
+              "country": "EUA",
+              "local_time": "15:00",
+              "time_zones": {
+                "BR": "16:00",
+                "CV": "18:00",
+                "PT": "20:00"
+              }
+            },
+            {
+              "group": "I",
+              "home": "Iraque",
+              "away": "Noruega",
+              "venue": "Boston",
+              "country": "EUA",
+              "local_time": "18:00",
+              "time_zones": {
+                "BR": "19:00",
+                "CV": "21:00",
+                "PT": "23:00"
+              }
+            },
+            {
+              "group": "J",
+              "home": "Argentina",
+              "away": "Argélia",
+              "venue": "Kansas City",
+              "country": "EUA",
+              "local_time": "20:00",
+              "time_zones": {
+                "BR": "22:00",
+                "CV": "00:00 (17 Jun)",
+                "PT": "02:00 (17 Jun)"
+              }
+            }
+          ]
+        },
+        {
+          "date": "2026-06-17",
+          "day": "Wednesday",
+          "matches": [
+            {
+              "group": "K",
+              "home": "Portugal",
+              "away": "RD Congo",
+              "venue": "Houston",
+              "country": "EUA",
+              "local_time": "12:00",
+              "time_zones": {
+                "BR": "14:00",
+                "CV": "16:00",
+                "PT": "18:00"
+              }
+            },
+            {
+              "group": "L",
+              "home": "Inglaterra",
+              "away": "Croácia",
+              "venue": "Dallas",
+              "country": "EUA",
+              "local_time": "15:00",
+              "time_zones": {
+                "BR": "17:00",
+                "CV": "19:00",
+                "PT": "21:00"
+              }
+            },
+            {
+              "group": "L",
+              "home": "Gana",
+              "away": "Panamá",
+              "venue": "Toronto",
+              "country": "Canadá",
+              "local_time": "19:00",
+              "time_zones": {
+                "BR": "20:00",
+                "CV": "22:00",
+                "PT": "00:00 (18 Jun)"
+              }
+            },
+            {
+              "group": "K",
+              "home": "Uzbequistão",
+              "away": "Colômbia",
+              "venue": "Cidade do México",
+              "country": "México",
+              "local_time": "20:00",
+              "time_zones": {
+                "BR": "21:00",
+                "CV": "23:00",
+                "PT": "01:00 (18 Jun)"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "phase": "Fase de Grupos - Rodada 2",
+      "days": [
+        {
+          "date": "2026-06-18",
+          "day": "Thursday",
+          "matches": [
+            {
+              "group": "A",
+              "home": "Tchéquia",
+              "away": "África do Sul",
+              "venue": "Atlanta",
+              "country": "EUA",
+              "local_time": "12:00",
+              "time_zones": {
+                "BR": "13:00",
+                "CV": "15:00",
+                "PT": "17:00"
+              }
+            },
+            {
+              "group": "B",
+              "home": "Suíça",
+              "away": "Bósnia e Herzegovina",
+              "venue": "Los Angeles",
+              "country": "EUA",
+              "local_time": "12:00",
+              "time_zones": {
+                "BR": "16:00",
+                "CV": "18:00",
+                "PT": "20:00"
+              }
+            },
+            {
+              "group": "B",
+              "home": "Canadá",
+              "away": "Catar",
+              "venue": "Vancouver",
+              "country": "Canadá",
+              "local_time": "15:00",
+              "time_zones": {
+                "BR": "19:00",
+                "CV": "21:00",
+                "PT": "23:00"
+              }
+            },
+            {
+              "group": "A",
+              "home": "México",
+              "away": "Coreia do Sul",
+              "venue": "Guadalajara",
+              "country": "México",
+              "local_time": "19:00",
+              "time_zones": {
+                "BR": "22:00",
+                "CV": "00:00 (19 Jun)",
+                "PT": "02:00 (19 Jun)"
+              }
+            }
+          ]
+        },
+        {
+          "date": "2026-06-19",
+          "day": "Friday",
+          "matches": [
+            {
+              "group": "D",
+              "home": "Turquia",
+              "away": "Paraguai",
+              "venue": "Santa Clara",
+              "country": "EUA",
+              "local_time": "20:00",
+              "time_zones": {
+                "BR": "00:00",
+                "CV": "02:00",
+                "PT": "04:00"
+              }
+            },
+            {
+              "group": "D",
+              "home": "EUA",
+              "away": "Austrália",
+              "venue": "Seattle",
+              "country": "EUA",
+              "local_time": "12:00",
+              "time_zones": {
+                "BR": "16:00",
+                "CV": "18:00",
+                "PT": "20:00"
+              }
+            },
+            {
+              "group": "C",
+              "home": "Escócia",
+              "away": "Marrocos",
+              "venue": "Boston",
+              "country": "EUA",
+              "local_time": "18:00",
+              "time_zones": {
+                "BR": "19:00",
+                "CV": "21:00",
+                "PT": "23:00"
+              }
+            },
+            {
+              "group": "C",
+              "home": "Brasil",
+              "away": "Haiti",
+              "venue": "Filadélfia",
+              "country": "EUA",
+              "local_time": "20:30",
+              "time_zones": {
+                "BR": "21:30",
+                "CV": "23:30 (20 Jun)",
+                "PT": "01:30 (20 Jun)"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
