@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Editor Blogger Limpo</title>
+</head>
+
+<body style="font-family:Arial;background:#f4f4f4;padding:20px;">
+
+<div style="max-width:900px;margin:auto;background:#fff;padding:20px;border-radius:10px;">
+
+  <h2>Editor de Blog (Limpo)</h2>
+
+  <input id="autor" placeholder="Autor"
+    style="width:100%;padding:10px;margin-top:10px;">
+
+  <input id="data" type="date"
+    style="width:100%;padding:10px;margin-top:10px;">
+
+  <input id="imagem" placeholder="Imagem 1200x630 URL"
+    style="width:100%;padding:10px;margin-top:10px;">
+
+  <textarea id="intro" rows="3" placeholder="Introdução"
+    style="width:100%;padding:10px;margin-top:10px;"></textarea>
+
+  <div style="margin-top:10px;">
+    <button onclick="formatar('h2')" style="padding:8px 12px;">Subtítulo</button>
+    <button onclick="formatar('quote')" style="padding:8px 12px;">Citação</button>
+  </div>
+
+  <div id="editor" contenteditable="true"
+    style="margin-top:15px;border:1px solid #ccc;padding:15px;min-height:250px;">
+    Escreva seu artigo aqui...
+  </div>
+
+  <h3>Créditos e Fontes</h3>
+
+  <input id="linkFonte" placeholder="Link da fonte"
+    style="width:100%;padding:10px;margin-top:10px;">
+
+  <input id="textoFonte" placeholder="Texto da fonte"
+    style="width:100%;padding:10px;margin-top:10px;">
+
+  <button onclick="addFonte()" style="margin-top:10px;padding:8px 12px;">
+    Adicionar fonte
+  </button>
+
+  <textarea id="creditosTexto" rows="3"
+    placeholder="Créditos (texto opcional)"
+    style="width:100%;padding:10px;margin-top:10px;"></textarea>
+
+  <div style="margin-top:15px;">
+    <button onclick="preview()" style="padding:8px 12px;">Visualizar</button>
+    <button onclick="exportar()" style="padding:8px 12px;">Exportar</button>
+    <button onclick="copiar()" style="padding:8px 12px;">Copiar código</button>
+  </div>
+
+  <h3>Preview</h3>
+  <div id="preview"></div>
+
+  <pre id="saida"
+    style="background:#111;color:#0f0;padding:10px;margin-top:15px;white-space:pre-wrap;"></pre>
+
+</div>
+
+<script>
+
+let fontes = [];
+
+function formatar(tipo) {
+  const sel = window.getSelection();
+  if (!sel.rangeCount) return;
+
+  const range = sel.getRangeAt(0);
+  const texto = range.toString();
+  if (!texto) return;
+
+  let el;
+
+  if (tipo === "h2") {
+    el = document.createElement("h2");
+    el.setAttribute("style","color:#1e88e5;font-weight:bold;margin:15px 0;");
+    el.textContent = texto;
+  }
+
+  if (tipo === "quote") {
+    el = document.createElement("blockquote");
+    el.setAttribute("style","border-left:4px solid #1e88e5;padding-left:10px;font-style:italic;color:#444;margin:15px 0;");
+    el.textContent = texto;
+  }
+
+  range.deleteContents();
+  range.insertNode(el);
+}
+
+/* FONTES */
+function addFonte() {
+  const link = document.getElementById("linkFonte").value;
+  const texto = document.getElementById("textoFonte").value;
+
+  if (!texto) return;
+
+  if (link) {
+    fontes.push(`<a href="${link}" target="_blank" style="color:#000;text-decoration:underline;">${texto}</a>`);
+  } else {
+    fontes.push(texto);
+  }
+}
+
+/* BUILD */
+function build() {
+  const autor = document.getElementById("autor").value;
+  const data = document.getElementById("data").value;
+  const imagem = document.getElementById("imagem").value;
+  const intro = document.getElementById("intro").value;
+  const conteudo = document.getElementById("editor").innerHTML;
+  const creditos = document.getElementById("creditosTexto").value;
+
+  return `
+<article style="max-width:850px;margin:auto;font-family:Arial;line-height:1.6;">
+
+  <div style="font-size:13px;color:#666;">
+    ${autor ? "Por " + autor : ""} ${data ? " • " + data : ""}
+  </div>
+
+  ${imagem ? `<img src="${imagem}" style="width:100%;aspect-ratio:1200/630;object-fit:cover;border-radius:8px;">` : ""}
+
+  ${intro ? `<p style="font-style:italic;color:#555;">${intro}</p>` : ""}
+
+  <div>${conteudo}</div>
+
+  <div style="margin-top:20px;background:#e0e0e0;padding:15px;border-radius:8px;color:#000;">
+
+    <strong>Fontes:</strong><br>
+    ${fontes.join(" • ") || "Nenhuma"}<br><br>
+
+    <strong>Créditos:</strong><br>
+    ${creditos || "Nenhum"}
+
+  </div>
+
+</article>
+  `;
+}
+
+/* PREVIEW */
+function preview() {
+  const html = build();
+  document.getElementById("preview").innerHTML = html;
+  document.getElementById("saida").textContent = html;
+}
+
+/* EXPORT */
+function exportar() {
+  const html = build();
+  const blob = new Blob([html], {type:"text/html"});
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "post.html";
+  a.click();
+}
+
+/* COPY */
+function copiar() {
+  navigator.clipboard.writeText(build());
+  alert("Copiado 😄");
+}
+
+</script>
+
+</body>
+</html>
